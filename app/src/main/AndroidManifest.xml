@@ -9,13 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".Estadisticas"
             android:label="@string/title_activity_estadisticas"
@@ -27,6 +20,18 @@
         <activity
             android:name=".Arcilla"
             android:label="@string/title_activity_arcilla"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Cargue"
+            android:label="@string/title_activity_cargue"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Quemado"
+            android:label="@string/title_activity_quemado"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Descargue"
+            android:label="@string/title_activity_descargue"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

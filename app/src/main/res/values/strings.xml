@@ -9,4 +9,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_moldeado">Moldeado</string>
     <string name="title_activity_arcilla">Arcilla</string>
+    <string name="title_activity_cargue">Cargue</string>
+    <string name="title_activity_quemado">Quemado</string>
+    <string name="title_activity_descargue">Descargue</string>
 </resources>
