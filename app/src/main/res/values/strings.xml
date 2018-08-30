@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">CeraviProject</string>
     <string name="title_activity_estadisticas">Estadisticas</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -12,4 +12,10 @@
     <string name="title_activity_cargue">Cargue</string>
     <string name="title_activity_quemado">Quemado</string>
     <string name="title_activity_descargue">Descargue</string>
+    <string name="descargue">Descargue</string>
+    <string name="quemado">Quemado</string>
+    <string name="cargue">Cargue</string>
+    <string name="recepci_n_de_arcilla">Recepción de Arcilla</string>
+    <string name="moldeado">Moldeado</string>
+    <string name="estadisticas">Estadisticas</string>
 </resources>
