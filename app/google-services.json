@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "738041605460",
+    "firebase_url": "https://ceravi-78976.firebaseio.com",
+    "project_id": "ceravi-78976",
+    "storage_bucket": "ceravi-78976.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738041605460:android:16b0b4cb02948bad",
+        "android_client_info": {
+          "package_name": "com.example.johnnhidalgo.ceraviproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "738041605460-houboeagip0au312uausknlkgn5rehid.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.johnnhidalgo.ceraviproject",
+            "certificate_hash": "d659c9d8656944d70c4229fb463d315fc30e5bc0"
+          }
+        },
+        {
+          "client_id": "738041605460-gidhf8aammj86pgv1nvecrcdm84g2go2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyQ6f6Y52TPrrBJU8QCysHpL4-V8_1djg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "738041605460-gidhf8aammj86pgv1nvecrcdm84g2go2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
