@@ -5,24 +5,28 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/estadisticas"
+            android:icon="@drawable/baseline_equalizer_black_18dp"
+            android:title="@string/estadisticas" />
+        <item
             android:id="@+id/arcilla"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/baseline_filter_hdr_black_18dp"
             android:title="@string/recepci_n_de_arcilla" />
         <item
             android:id="@+id/moldeado"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/baseline_business_black_18dp"
             android:title="@string/moldeado" />
         <item
             android:id="@+id/cargue"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/baseline_rv_hookup_black_18dp"
             android:title="@string/cargue" />
         <item
             android:id="@+id/quemado"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/baseline_waves_black_18dp"
             android:title="@string/quemado" />
         <item
             android:id="@+id/descargue"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/baseline_rv_hookup_black_18dp"
             android:title="@string/descargue" />
     </group>
 
