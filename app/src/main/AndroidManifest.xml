@@ -19,8 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".Moldeado"
             android:label="@string/title_activity_moldeado"
@@ -40,7 +38,33 @@
         <activity
             android:name=".Descargue"
             android:label="@string/title_activity_descargue"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MenuClienteListActivity"
+            android:label="@string/title_menucliente_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MenuClienteDetailActivity"
+            android:label="@string/title_menucliente_detail"
+            android:parentActivityName=".MenuClienteListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.johnnhidalgo.ceraviproject.MenuClienteListActivity" />
+        </activity>
+        <activity
+            android:name=".AgregarClienteListActivity"
+            android:label="@string/title_agregarcliente_list"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".AgregarClienteDetailActivity"
+            android:label="@string/title_agregarcliente_detail"
+            android:parentActivityName=".AgregarClienteListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.johnnhidalgo.ceraviproject.AgregarClienteListActivity" />
+        </activity>
     </application>
 
 </manifest>

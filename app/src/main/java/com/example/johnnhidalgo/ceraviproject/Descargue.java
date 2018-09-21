@@ -99,6 +99,9 @@ public class Descargue extends AppCompatActivity
         } else if (id == R.id.descargue) {
             Intent h= new Intent(Descargue.this,Descargue.class);
             startActivity(h);
+        }else if (id == R.id.view_cliente) {
+            Intent h= new Intent(Descargue.this,MenuClienteListActivity.class);
+            startActivity(h);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

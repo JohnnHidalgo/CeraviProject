@@ -99,6 +99,9 @@ public class Quemado extends AppCompatActivity
         } else if (id == R.id.descargue) {
             Intent h= new Intent(Quemado.this,Descargue.class);
             startActivity(h);
+        }else if (id == R.id.view_cliente) {
+            Intent h= new Intent(Quemado.this,MenuClienteListActivity.class);
+            startActivity(h);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -32,13 +32,21 @@
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/view_cliente"
+                android:icon="@drawable/baseline_perm_identity_black_18dp"
+                android:title="@string/clientes" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/view_obreros"
+                android:icon="@drawable/baseline_transfer_within_a_station_black_18dp"
+                android:title="@string/obreros" />
+            <item
+                android:id="@+id/view_tArcilla"
+                android:icon="@drawable/baseline_local_shipping_black_18dp"
+                android:title="@string/transportistas_de_arcilla" />
+            <item
+                android:id="@+id/view_tLadrillo"
+                android:icon="@drawable/baseline_local_shipping_black_18dp"
+                android:title="@string/transportistas_de_ladrillo" />
         </menu>
     </item>
 

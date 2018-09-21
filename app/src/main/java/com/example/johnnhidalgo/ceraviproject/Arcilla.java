@@ -99,7 +99,20 @@ public class Arcilla extends AppCompatActivity
         } else if (id == R.id.descargue) {
             Intent h= new Intent(Arcilla.this,Descargue.class);
             startActivity(h);
+        }else if (id == R.id.view_cliente) {
+            Intent h= new Intent(Arcilla.this,MenuClienteListActivity.class);
+            startActivity(h);
         }
+        /*else if (id == R.id.view_obreros) {
+            Intent h = new Intent(Arcilla.this,ObrerosActivity.class);
+            startActivity(h);
+        } else if (id == R.id.view_tArcilla) {
+            Intent h = new Intent(Arcilla.this,Transportistas_de_ArcillaActivity.class);
+            startActivity(h);
+        } else if (id == R.id.view_tLadrillo) {
+            Intent h = new Intent(Arcilla.this,Transportistas_de_LadrilloActivity.class);
+            startActivity(h);
+        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

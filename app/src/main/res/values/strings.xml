@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">CeraviProject</string>
     <string name="title_activity_estadisticas">Estadisticas</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -20,4 +20,14 @@
     <string name="estadisticas">Estadisticas</string>
     <string name="ceravi">CERAVI</string>
     <string name="ceramica_viacha">Ceramica Viacha</string>
+    <string name="title_menucliente_list">MenuClientes</string>
+    <string name="title_menucliente_detail">MenuCliente Detail</string>
+    <string name="title_agregarcliente_list">AgregarClientes</string>
+    <string name="title_agregarcliente_detail">AgregarCliente Detail</string>
+    <string name="clienteList_dialog_title">mi codigo</string>
+    <string name="comidaList_dialog_ok">OK</string>
+    <string name="clientes">Clientes</string>
+    <string name="obreros">Obreros</string>
+    <string name="transportistas_de_arcilla">Transportistas de arcilla</string>
+    <string name="transportistas_de_ladrillo">Transportistas de ladrillo</string>
 </resources>

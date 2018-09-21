@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:text="Borrar"/>
+
+    <LinearLayout
+        android:layout_width="220dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nombreP"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:background="@color/colorAccent"/>
+
+        <TextView
+            android:id="@+id/ciudadP"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/colorAccent"
+            android:textAppearance="?attr/textAppearanceListItem" />
+
+        <TextView
+            android:id="@+id/id_telefonoP"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/colorAccent"
+            android:textAppearance="?attr/textAppearanceListItem" />
+    </LinearLayout>
+
+</LinearLayout>
