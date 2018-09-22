@@ -11,14 +11,12 @@ import android.widget.TextView;
 
 import com.example.johnnhidalgo.ceraviproject.dummy.DummyContent;
 
-
-public class AgregarClienteDetailFragment extends Fragment {
+public class MenuObreroDetailFragment extends Fragment {
 
     public static final String ARG_ITEM_ID = "item_id";
+    private DummyContent.Obrero mItem;
 
-    private DummyContent.Cliente mItem;
-
-    public AgregarClienteDetailFragment() {
+    public MenuObreroDetailFragment() {
     }
 
     @Override
@@ -26,10 +24,10 @@ public class AgregarClienteDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-             mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            mItem = DummyContent.ITEM_MAPOb.get(getArguments().getString(ARG_ITEM_ID));
 
             Activity activity = this.getActivity();
-            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
+            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layoutObrero);
             if (appBarLayout != null) {
                 appBarLayout.setTitle(mItem.getNombre());
             }
@@ -39,10 +37,10 @@ public class AgregarClienteDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.agregarcliente_detail, container, false);
+        View rootView = inflater.inflate(R.layout.menuobrero_detail, container, false);
 
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.agregarcliente_detail)).setText(mItem.getTelefono());
+            ((TextView) rootView.findViewById(R.id.menuobrero_detail)).setText(mItem.getTelefono());
         }
 
         return rootView;

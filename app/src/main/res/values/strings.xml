@@ -30,4 +30,9 @@
     <string name="obreros">Obreros</string>
     <string name="transportistas_de_arcilla">Transportistas de arcilla</string>
     <string name="transportistas_de_ladrillo">Transportistas de ladrillo</string>
+    <string name="title_menuobrero_list">MenuObreros</string>
+    <string name="title_menuobrero_detail">MenuObrero Detail</string>
+    <string name="borrar">Borrar</string>
+    <string name="title_agregarobrero_list">AgregarObreros</string>
+    <string name="title_agregarobrero_detail">AgregarObrero Detail</string>
 </resources>

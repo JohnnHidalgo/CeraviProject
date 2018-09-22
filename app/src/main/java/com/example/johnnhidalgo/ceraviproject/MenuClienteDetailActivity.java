@@ -11,7 +11,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
-
 public class MenuClienteDetailActivity extends AppCompatActivity {
 
     @Override
@@ -30,7 +29,6 @@ public class MenuClienteDetailActivity extends AppCompatActivity {
             }
         });
 
-        // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);

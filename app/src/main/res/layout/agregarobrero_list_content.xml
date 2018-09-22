@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:orientation="horizontal">
@@ -16,25 +15,31 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/nombre"
+            android:id="@+id/nombreO"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:textAppearance="?attr/textAppearanceListItem"
             android:background="@color/colorAccent"/>
 
         <TextView
-            android:id="@+id/ciudad"
+            android:id="@+id/ciudadO"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:background="@color/colorAccent"
             android:textAppearance="?attr/textAppearanceListItem" />
 
         <TextView
-            android:id="@+id/id_telefono"
+            android:id="@+id/telefonoO"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:background="@color/colorAccent"
             android:textAppearance="?attr/textAppearanceListItem" />
-    </LinearLayout>
 
+    </LinearLayout>
+    <Button
+        android:id="@+id/btnDeleteO"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:text="Borrar"
+        android:layout_gravity="center"/>
 </LinearLayout>

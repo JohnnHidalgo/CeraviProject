@@ -55,7 +55,7 @@
         <activity
             android:name=".AgregarClienteListActivity"
             android:label="@string/title_agregarcliente_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AgregarClienteDetailActivity"
             android:label="@string/title_agregarcliente_detail"
@@ -64,6 +64,32 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.johnnhidalgo.ceraviproject.AgregarClienteListActivity" />
+        </activity>
+        <activity
+            android:name=".MenuObreroListActivity"
+            android:label="@string/title_menuobrero_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MenuObreroDetailActivity"
+            android:label="@string/title_menuobrero_detail"
+            android:parentActivityName=".MenuObreroListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.johnnhidalgo.ceraviproject.MenuObreroListActivity" />
+        </activity>
+        <activity
+            android:name=".AgregarObreroListActivity"
+            android:label="@string/title_agregarobrero_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".AgregarObreroDetailActivity"
+            android:label="@string/title_agregarobrero_detail"
+            android:parentActivityName=".AgregarObreroListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.johnnhidalgo.ceraviproject.AgregarObreroListActivity" />
         </activity>
     </application>
 

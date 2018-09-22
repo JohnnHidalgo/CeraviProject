@@ -102,6 +102,9 @@ public class Cargue extends AppCompatActivity
         }else if (id == R.id.view_cliente) {
             Intent h= new Intent(Cargue.this,MenuClienteListActivity.class);
             startActivity(h);
+        }else if (id == R.id.view_obreros) {
+            Intent h = new Intent(Cargue.this,MenuObreroListActivity.class);
+            startActivity(h);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

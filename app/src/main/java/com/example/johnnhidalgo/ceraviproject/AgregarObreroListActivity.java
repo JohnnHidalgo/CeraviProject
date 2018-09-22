@@ -36,27 +36,25 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+public class AgregarObreroListActivity extends AppCompatActivity {
 
-public class AgregarClienteListActivity extends AppCompatActivity {
-
-    private static final String PATH_FOOD = "Clientes";
-    private static final String PATH_PROFILE = "profile";
-    private static final String PATH_CODE = "code";
-
-    @BindView(R.id.etName)
+    private static final String PATH_FOODOb = "Obreros";
+    private static final String PATH_PROFILEOb = "profile";
+    private static final String PATH_CODEOb = "code";
+    @BindView(R.id.etNameO)
     EditText etName;
-    @BindView(R.id.etTelefono)
+    @BindView(R.id.etTelefonoO)
     EditText etTelefono;
-    @BindView(R.id.btnSave)
+    @BindView(R.id.btnSaveO)
     Button btnSave;
-    @BindView(R.id.etCiudad)
+    @BindView(R.id.etCiudadO)
     EditText etCiudad;
-    private boolean mTwoPane;
+    private boolean mTwoPaneOb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agregarcliente_list);
+        setContentView(R.layout.activity_agregarobrero_list);
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -71,68 +69,71 @@ public class AgregarClienteListActivity extends AppCompatActivity {
             }
         });
 
-        if (findViewById(R.id.agregarcliente_detail_container) != null) {
-            mTwoPane = true;
+        if (findViewById(R.id.agregarobrero_detail_container) != null) {
+            mTwoPaneOb = true;
         }
 
-        View recyclerView = findViewById(R.id.agregarcliente_list);
+        View recyclerView = findViewById(R.id.agregarobrero_list);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
     }
 
-    private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, mTwoPane));
+    private void setupRecyclerView( final RecyclerView recyclerView) {
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMSOb, mTwoPaneOb));
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference(PATH_FOOD);
+        DatabaseReference reference = database.getReference(PATH_FOODOb);
         reference.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                DummyContent.Cliente cliente = dataSnapshot.getValue(DummyContent.Cliente.class);
-                cliente.setId(dataSnapshot.getKey());
+            public void onChildAdded( DataSnapshot dataSnapshot,  String s) {
+                DummyContent.Obrero obrero =dataSnapshot.getValue(DummyContent.Obrero.class);
+                obrero.setId(dataSnapshot.getKey());
 
-                if (!DummyContent.ITEMS.contains(cliente)) {
-                    DummyContent.addItem(cliente);
+                if (!DummyContent.ITEMSOb.contains(obrero)) {
+                    DummyContent.addItemOb(obrero);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
+
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                DummyContent.Cliente cliente = dataSnapshot.getValue(DummyContent.Cliente.class);
-                cliente.setId(dataSnapshot.getKey());
+            public void onChildChanged( DataSnapshot dataSnapshot,  String s) {
+                DummyContent.Obrero obrero = dataSnapshot.getValue(DummyContent.Obrero.class);
+                obrero.setId(dataSnapshot.getKey());
 
-                if (DummyContent.ITEMS.contains(cliente)) {
-                    DummyContent.updateItem(cliente);
+                if (DummyContent.ITEMSOb.contains(obrero)) {
+                    DummyContent.updateItemOb(obrero);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
+
             @Override
             public void onChildRemoved( DataSnapshot dataSnapshot) {
-                DummyContent.Cliente cliente = dataSnapshot.getValue(DummyContent.Cliente.class);
-                cliente.setId(dataSnapshot.getKey());
+                DummyContent.Obrero obrero = dataSnapshot.getValue(DummyContent.Obrero.class);
+                obrero.setId(dataSnapshot.getKey());
 
-                if (DummyContent.ITEMS.contains(cliente)) {
-                    DummyContent.deleteItem(cliente);
+                if (DummyContent.ITEMSOb.contains(obrero)) {
+                    DummyContent.deleteItemOb(obrero);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
+
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-                Toast.makeText(AgregarClienteListActivity.this, "Moved", Toast.LENGTH_SHORT).show();
+            public void onChildMoved( DataSnapshot dataSnapshot,  String s) {
+                Toast.makeText(AgregarObreroListActivity.this, "Moved", Toast.LENGTH_SHORT).show();
             }
+
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(AgregarClienteListActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
+            public void onCancelled( DatabaseError databaseError) {
+                Toast.makeText(AgregarObreroListActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
-    @OnClick(R.id.btnSave)
+    @OnClick(R.id.btnSaveO)
     public void onViewClicked() {
-        DummyContent.Cliente cliente = new DummyContent.Cliente(etName.getText().toString().trim(),
+        DummyContent.Obrero obrero = new DummyContent.Obrero(etName.getText().toString().trim(),
                 etTelefono.getText().toString().trim(),etCiudad.getText().toString().trim());
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference(PATH_FOOD);
-        reference.push().setValue(cliente);
+        DatabaseReference reference = database.getReference(PATH_FOODOb);
+        reference.push().setValue(obrero);
         etName.setText("");
         etTelefono.setText("");
         etCiudad.setText("");
@@ -151,7 +152,7 @@ public class AgregarClienteListActivity extends AppCompatActivity {
                 tvCode.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28);
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference reference = database.getReference(PATH_PROFILE).child(PATH_CODE);
+                DatabaseReference reference = database.getReference(PATH_PROFILEOb).child(PATH_CODEOb);
 
                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -161,7 +162,7 @@ public class AgregarClienteListActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-                        Toast.makeText(AgregarClienteListActivity.this, "No se puede cargar el código.",
+                        Toast.makeText(AgregarObreroListActivity.this, "No se puede cargar el código.",
                                 Toast.LENGTH_LONG).show();
                     }
                 });
@@ -180,33 +181,33 @@ public class AgregarClienteListActivity extends AppCompatActivity {
     public static class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final AgregarClienteListActivity mParentActivity;
-        private final List<DummyContent.Cliente> mValues;
+        private final AgregarObreroListActivity mParentActivity;
+        private final List<DummyContent.Obrero> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DummyContent.Cliente item = (DummyContent.Cliente) view.getTag();
+                DummyContent.Obrero item = (DummyContent.Obrero) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
-                    arguments.putString(AgregarClienteDetailFragment.ARG_ITEM_ID, item.getId());
-                    AgregarClienteDetailFragment fragment = new AgregarClienteDetailFragment();
+                    arguments.putString(AgregarObreroDetailFragment.ARG_ITEM_ID, item.getId());
+                    AgregarObreroDetailFragment fragment = new AgregarObreroDetailFragment();
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.agregarcliente_detail_container, fragment)
+                            .replace(R.id.agregarobrero_detail_container, fragment)
                             .commit();
                 } else {
                     Context context = view.getContext();
-                    Intent intent = new Intent(context, AgregarClienteDetailActivity.class);
-                    intent.putExtra(AgregarClienteDetailFragment.ARG_ITEM_ID, item.getId());
+                    Intent intent = new Intent(context, AgregarObreroDetailActivity.class);
+                    intent.putExtra(AgregarObreroDetailFragment.ARG_ITEM_ID, item.getId());
 
                     context.startActivity(intent);
                 }
             }
         };
 
-        SimpleItemRecyclerViewAdapter(AgregarClienteListActivity parent,
-                                      List<DummyContent.Cliente> items,
+        SimpleItemRecyclerViewAdapter(AgregarObreroListActivity parent,
+                                      List<DummyContent.Obrero> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;
@@ -216,7 +217,7 @@ public class AgregarClienteListActivity extends AppCompatActivity {
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.agregarcliente_list_content, parent, false);
+                    .inflate(R.layout.agregarobrero_list_content, parent, false);
             return new ViewHolder(view);
         }
 
@@ -232,7 +233,7 @@ public class AgregarClienteListActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference reference = database.getReference(PATH_FOOD);
+                    DatabaseReference reference = database.getReference(PATH_FOODOb);
                     reference.child(mValues.get(position).getId()).removeValue();
                 }
             });
@@ -247,15 +248,15 @@ public class AgregarClienteListActivity extends AppCompatActivity {
             final TextView mIdView;
             final TextView mContentView;
             final TextView mContentViewap;
-            @BindView(R.id.btnDelete)
+            @BindView(R.id.btnDeleteO)
             Button btnDelete;
 
             ViewHolder(View view) {
                 super(view);
                 ButterKnife.bind(this, view);
-                mIdView = (TextView) view.findViewById(R.id.id_telefono);
-                mContentView = (TextView) view.findViewById(R.id.nombre);
-                mContentViewap = (TextView) view.findViewById(R.id.ciudad);
+                mIdView = (TextView) view.findViewById(R.id.telefonoO);
+                mContentView = (TextView) view.findViewById(R.id.nombreO);
+                mContentViewap = (TextView) view.findViewById(R.id.ciudadO);
             }
         }
     }

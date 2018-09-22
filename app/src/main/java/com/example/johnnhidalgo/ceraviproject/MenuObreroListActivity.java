@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -23,15 +24,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 import butterknife.ButterKnife;
 
-public class MenuClienteListActivity extends AppCompatActivity {
 
-    private boolean mTwoPane;
-    private static final String PATH_FOOD = "Clientes";
+public class MenuObreroListActivity extends AppCompatActivity {
+
+    private boolean mTwoPaneOb;
+    private static final String PATH_FOODob = "Obreros";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menucliente_list);
+        setContentView(R.layout.activity_menuobrero_list);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -41,33 +43,34 @@ public class MenuClienteListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent h= new Intent(MenuClienteListActivity.this,AgregarClienteListActivity.class);
+                  Intent h= new Intent(MenuObreroListActivity.this,AgregarObreroListActivity.class);
                 startActivity(h);
             }
         });
 
-        if (findViewById(R.id.menucliente_detail_container) != null) {
-            mTwoPane = true;
+        if (findViewById(R.id.menuobrero_detail_container) != null) {
+            mTwoPaneOb = true;
         }
 
-        View recyclerView = findViewById(R.id.menucliente_list);
+        View recyclerView = findViewById(R.id.menuobrero_list);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
     }
 
     private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, mTwoPane));
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference(PATH_FOOD);
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMSOb, mTwoPaneOb));
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference(PATH_FOODob);
         reference.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onChildAdded( DataSnapshot dataSnapshot,  String s) {
-                DummyContent.Cliente cliente = dataSnapshot.getValue(DummyContent.Cliente.class);
-                cliente.setId(dataSnapshot.getKey());
-                if(!DummyContent.ITEMS.contains(cliente)){
-                    DummyContent.addItem(cliente);
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                DummyContent.Obrero obrero = dataSnapshot.getValue(DummyContent.Obrero.class);
+                obrero.setId(dataSnapshot.getKey());
+                if (!DummyContent.ITEMSOb.contains(obrero)) {
+                    DummyContent.addItemOb(obrero);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
+
             }
 
             @Override
@@ -81,7 +84,7 @@ public class MenuClienteListActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onChildMoved( DataSnapshot dataSnapshot,  String s) {
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
             }
 
@@ -90,49 +93,48 @@ public class MenuClienteListActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     public static class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final MenuClienteListActivity mParentActivity;
-        private final List<DummyContent.Cliente> mValues;
-        private final boolean mTwoPane;
+        private final MenuObreroListActivity mParentActivity;
+        private final List<DummyContent.Obrero> mValues;
+        private final boolean mTwoPaneOb;//mTwoPaneOb
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DummyContent.Cliente item = (DummyContent.Cliente) view.getTag();
-                if (mTwoPane) {
+                DummyContent.Obrero item = (DummyContent.Obrero) view.getTag();
+                if (mTwoPaneOb) {
                     Bundle arguments = new Bundle();
-                    arguments.putString(MenuClienteDetailFragment.ARG_ITEM_ID, item.getId());
-                    MenuClienteDetailFragment fragment = new MenuClienteDetailFragment();
+                    arguments.putString(MenuObreroDetailFragment.ARG_ITEM_ID, item.getId());
+                    MenuObreroDetailFragment fragment = new MenuObreroDetailFragment();
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.menucliente_detail_container, fragment)
+                            .replace(R.id.menuobrero_detail_container, fragment)
                             .commit();
                 } else {
                     Context context = view.getContext();
-                    Intent intent = new Intent(context, MenuClienteDetailActivity.class);
-                    intent.putExtra(MenuClienteDetailFragment.ARG_ITEM_ID, item.getId());
+                    Intent intent = new Intent(context, MenuObreroListActivity.class);
+                    intent.putExtra(MenuObreroDetailFragment.ARG_ITEM_ID, item.getId());
 
                     context.startActivity(intent);
                 }
             }
         };
 
-        SimpleItemRecyclerViewAdapter(MenuClienteListActivity parent,
-                                      List<DummyContent.Cliente> items,
+        SimpleItemRecyclerViewAdapter(MenuObreroListActivity parent,
+                                      List<DummyContent.Obrero> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;
-            mTwoPane = twoPane;
+            mTwoPaneOb = twoPane;
         }
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.menucliente_list_content, parent, false);
+                    .inflate(R.layout.menuobrero_list_content, parent, false);
             return new ViewHolder(view);
         }
 
@@ -158,10 +160,10 @@ public class MenuClienteListActivity extends AppCompatActivity {
 
             ViewHolder(View view) {
                 super(view);
-                ButterKnife.bind(this,view);
-                mIdView =(TextView)view.findViewById(R.id.id_telefono);
-                mContentView = (TextView) view.findViewById(R.id.nombre);
-                mContentViewap = (TextView) view.findViewById(R.id.ciudad);
+                ButterKnife.bind(this, view);
+                mIdView = (TextView) view.findViewById(R.id.id_telefonoP);
+                mContentView = (TextView) view.findViewById(R.id.nombreP);
+                mContentViewap = (TextView) view.findViewById(R.id.ciudadP);
             }
         }
     }
