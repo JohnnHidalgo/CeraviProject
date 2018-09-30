@@ -33,7 +33,7 @@ public class DummyContent {
     }
 
     private static Cliente createDummyItem(int position) {
-        return new Cliente(String.valueOf(position), "Item " + position, makeDetails(position));
+        return new Cliente(String.valueOf(position), "Item " + position, makeDetails(position), String.valueOf(position));
     }
 
     private static String makeDetails(int position) {
@@ -50,21 +50,23 @@ public class DummyContent {
         private String nombre;
         private String ciudad;
         private String telefono;
+        private String nit;
 
         public Cliente() {
         }
 
-        public Cliente(String nombre, String telefono, String ciudad) {
+        public Cliente(String nombre, String telefono, String ciudad, String nit) {
             this.nombre = nombre;
             this.telefono = telefono;
             this.ciudad = ciudad;
+            this.nit=nit;
         }
-
-        public Cliente(String id, String nombre, String ciudad, String telefono) {
+        public Cliente(String id, String nombre, String ciudad, String telefono, String nit) {
             this.id = id;
             this.nombre = nombre;
             this.ciudad = ciudad;
             this.telefono = telefono;
+            this.nit=nit;
         }
 
         @Override
@@ -104,6 +106,9 @@ public class DummyContent {
             this.telefono = telefono;
         }
 
+        public String getNit() { return nit; }
+
+        public void setNit(String nit) { this.nit = nit;}
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
@@ -118,6 +123,10 @@ public class DummyContent {
         }
 
     }
+
+
+
+
 
     /*********OBRERO*********/
     public static final List<Obrero> ITEMSOb = new ArrayList<Obrero>();

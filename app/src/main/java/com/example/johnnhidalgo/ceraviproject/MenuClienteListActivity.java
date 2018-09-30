@@ -141,6 +141,8 @@ public class MenuClienteListActivity extends AppCompatActivity {
             holder.mIdView.setText(mValues.get(position).getTelefono());
             holder.mContentView.setText(mValues.get(position).getNombre());
             holder.mContentViewap.setText(mValues.get(position).getCiudad());
+            holder.mContentViewnit.setText(mValues.get(position).getNit());
+
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
@@ -155,13 +157,15 @@ public class MenuClienteListActivity extends AppCompatActivity {
             final TextView mIdView;
             final TextView mContentView;
             final TextView mContentViewap;
+            final TextView mContentViewnit;
 
             ViewHolder(View view) {
                 super(view);
                 ButterKnife.bind(this,view);
-                mIdView =(TextView)view.findViewById(R.id.id_telefono);
+                mIdView =(TextView)view.findViewById(R.id.telefono);
                 mContentView = (TextView) view.findViewById(R.id.nombre);
                 mContentViewap = (TextView) view.findViewById(R.id.ciudad);
+                mContentViewnit = (TextView)view.findViewById(R.id.nit);
             }
         }
     }

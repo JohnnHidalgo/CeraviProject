@@ -51,6 +51,8 @@ public class AgregarClienteListActivity extends AppCompatActivity {
     Button btnSave;
     @BindView(R.id.etCiudad)
     EditText etCiudad;
+    @BindView(R.id.etNit)
+    EditText etNit;
     private boolean mTwoPane;
 
     @Override
@@ -129,13 +131,15 @@ public class AgregarClienteListActivity extends AppCompatActivity {
     @OnClick(R.id.btnSave)
     public void onViewClicked() {
         DummyContent.Cliente cliente = new DummyContent.Cliente(etName.getText().toString().trim(),
-                etTelefono.getText().toString().trim(),etCiudad.getText().toString().trim());
+                etTelefono.getText().toString().trim(),etCiudad.getText().toString().trim(),etNit.getText().toString().trim());
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(PATH_FOOD);
         reference.push().setValue(cliente);
         etName.setText("");
         etTelefono.setText("");
         etCiudad.setText("");
+        etNit.setText("");
+
     }
 
     @Override
@@ -225,6 +229,7 @@ public class AgregarClienteListActivity extends AppCompatActivity {
             holder.mIdView.setText(mValues.get(position).getTelefono());
             holder.mContentView.setText(mValues.get(position).getNombre());
             holder.mContentViewap.setText(mValues.get(position).getCiudad());
+            holder.mContentViewnit.setText(mValues.get(position).getNit());
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
@@ -247,15 +252,17 @@ public class AgregarClienteListActivity extends AppCompatActivity {
             final TextView mIdView;
             final TextView mContentView;
             final TextView mContentViewap;
+            final TextView mContentViewnit;
             @BindView(R.id.btnDelete)
             Button btnDelete;
 
             ViewHolder(View view) {
                 super(view);
                 ButterKnife.bind(this, view);
-                mIdView = (TextView) view.findViewById(R.id.id_telefono);
+                mIdView = (TextView) view.findViewById(R.id.telefono);
                 mContentView = (TextView) view.findViewById(R.id.nombre);
                 mContentViewap = (TextView) view.findViewById(R.id.ciudad);
+                mContentViewnit = (TextView) view.findViewById(R.id.nit);
             }
         }
     }
