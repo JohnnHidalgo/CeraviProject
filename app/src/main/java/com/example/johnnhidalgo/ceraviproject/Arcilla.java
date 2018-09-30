@@ -105,6 +105,9 @@ public class Arcilla extends AppCompatActivity
         }else if (id == R.id.view_obreros) {
             Intent h = new Intent(Arcilla.this,MenuObreroListActivity.class);
             startActivity(h);
+        }else if (id == R.id.view_tArcilla) {
+            Intent h = new Intent(Arcilla.this,MenuTransportistaDeArcillaListActivity.class);
+            startActivity(h);
         }
         /*else if (id == R.id.view_obreros) {
             Intent h = new Intent(Arcilla.this,ObrerosActivity.class);

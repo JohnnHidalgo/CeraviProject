@@ -81,7 +81,7 @@
         <activity
             android:name=".AgregarObreroListActivity"
             android:label="@string/title_agregarobrero_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AgregarObreroDetailActivity"
             android:label="@string/title_agregarobrero_detail"
@@ -90,6 +90,32 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.johnnhidalgo.ceraviproject.AgregarObreroListActivity" />
+        </activity>
+        <activity
+            android:name=".AgregarTransportistaDeArcillaListActivity"
+            android:label="@string/title_agregartransportistadearcilla_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AgregarTransportistaDeArcillaDetailActivity"
+            android:label="@string/title_agregartransportistadearcilla_detail"
+            android:parentActivityName=".AgregarTransportistaDeArcillaListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.johnnhidalgo.ceraviproject.AgregarTransportistaDeArcillaListActivity" />
+        </activity>
+        <activity
+            android:name=".MenuTransportistaDeArcillaListActivity"
+            android:label="@string/title_menutransportistadearcilla_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".MenuTransportistaDeArcillaDetailActivity"
+            android:label="@string/title_menutransportistadearcilla_detail"
+            android:parentActivityName=".MenuTransportistaDeArcillaListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.johnnhidalgo.ceraviproject.MenuTransportistaDeArcillaListActivity" />
         </activity>
     </application>
 

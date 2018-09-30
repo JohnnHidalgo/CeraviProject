@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -36,29 +37,27 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+public class AgregarTransportistaDeArcillaListActivity extends AppCompatActivity {
 
-public class AgregarClienteListActivity extends AppCompatActivity {
-
-    private static final String PATH_FOOD = "Clientes";
+    private static final String PATH_FOOD = "TransportistasDeArcilla";
     private static final String PATH_PROFILE = "profile";
     private static final String PATH_CODE = "code";
-
-    @BindView(R.id.etName)
-    EditText etName;
-    @BindView(R.id.etTelefono)
-    EditText etTelefono;
-    @BindView(R.id.btnSave)
-    Button btnSave;
-    @BindView(R.id.etCiudad)
-    EditText etCiudad;
-    @BindView(R.id.etNit)
-    EditText etNit;
+    @BindView(R.id.AName)
+    EditText AName;
+    @BindView(R.id.ATelefono)
+    EditText ATelefono;
+    @BindView(R.id.btnASave)
+    Button btnASave;
+    @BindView(R.id.ACooperativa)
+    EditText ACooperativa;
+    @BindView(R.id.Aplaca)
+    EditText APlaca;
     private boolean mTwoPane;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agregarcliente_list);
+        setContentView(R.layout.activity_agregartransportistadearcilla_list);
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -73,72 +72,75 @@ public class AgregarClienteListActivity extends AppCompatActivity {
             }
         });
 
-        if (findViewById(R.id.agregarcliente_detail_container) != null) {
+        if (findViewById(R.id.agregartransportistadearcilla_detail_container) != null) {
             mTwoPane = true;
         }
 
-        View recyclerView = findViewById(R.id.agregarcliente_list);
+        View recyclerView = findViewById(R.id.agregartransportistadearcilla_list);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
     }
 
     private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, mTwoPane));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMSTRA, mTwoPane));
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(PATH_FOOD);
         reference.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                DummyContent.Cliente cliente = dataSnapshot.getValue(DummyContent.Cliente.class);
-                cliente.setId(dataSnapshot.getKey());
-
-                if (!DummyContent.ITEMS.contains(cliente)) {
-                    DummyContent.addItem(cliente);
+            public void onChildAdded( DataSnapshot dataSnapshot,  String s) {
+                DummyContent.TransArcilla transArcilla = dataSnapshot.getValue(DummyContent.TransArcilla.class);
+                transArcilla.setId(dataSnapshot.getKey());
+                if (!DummyContent.ITEMSTRA.contains(transArcilla)) {
+                    DummyContent.addItemTra(transArcilla);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
+
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                DummyContent.Cliente cliente = dataSnapshot.getValue(DummyContent.Cliente.class);
-                cliente.setId(dataSnapshot.getKey());
+            public void onChildChanged( DataSnapshot dataSnapshot,  String s) {
+                DummyContent.TransArcilla transArcilla = dataSnapshot.getValue(DummyContent.TransArcilla.class);
+                transArcilla.setId(dataSnapshot.getKey());
 
-                if (DummyContent.ITEMS.contains(cliente)) {
-                    DummyContent.updateItem(cliente);
+                if (DummyContent.ITEMSTRA.contains(transArcilla)) {
+                    DummyContent.updateItemTra(transArcilla);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
+
             @Override
             public void onChildRemoved( DataSnapshot dataSnapshot) {
-                DummyContent.Cliente cliente = dataSnapshot.getValue(DummyContent.Cliente.class);
-                cliente.setId(dataSnapshot.getKey());
+                DummyContent.TransArcilla transArcilla = dataSnapshot.getValue(DummyContent.TransArcilla.class);
+                transArcilla.setId(dataSnapshot.getKey());
 
-                if (DummyContent.ITEMS.contains(cliente)) {
-                    DummyContent.deleteItem(cliente);
+                if (DummyContent.ITEMSTRA.contains(transArcilla)) {
+                    DummyContent.deleteItemTra(transArcilla);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
+
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-                Toast.makeText(AgregarClienteListActivity.this, "Moved", Toast.LENGTH_SHORT).show();
+            public void onChildMoved( DataSnapshot dataSnapshot,  String s) {
+                Toast.makeText(AgregarTransportistaDeArcillaListActivity.this, "Moved", Toast.LENGTH_SHORT).show();
             }
+
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(AgregarClienteListActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
+            public void onCancelled( DatabaseError databaseError) {
+                Toast.makeText(AgregarTransportistaDeArcillaListActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
-    @OnClick(R.id.btnSave)
+    @OnClick(R.id.btnASave)
     public void onViewClicked() {
-        DummyContent.Cliente cliente = new DummyContent.Cliente(etName.getText().toString().trim(),
-                etTelefono.getText().toString().trim(),etCiudad.getText().toString().trim(),etNit.getText().toString().trim());
+        DummyContent.TransArcilla transArcilla =  new DummyContent.TransArcilla(AName.getText().toString().trim(),ATelefono.getText().toString().trim(),
+                                                        ACooperativa.getText().toString().trim(),APlaca.getText().toString().trim());
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(PATH_FOOD);
-        reference.push().setValue(cliente);
-        etName.setText("");
-        etTelefono.setText("");
-        etCiudad.setText("");
-        etNit.setText("");
+        reference.push().setValue(transArcilla);
+        AName.setText("");
+        ATelefono.setText("");
+        ACooperativa.setText("");
+        APlaca.setText("");
 
     }
 
@@ -165,7 +167,7 @@ public class AgregarClienteListActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-                        Toast.makeText(AgregarClienteListActivity.this, "No se puede cargar el código.",
+                        Toast.makeText(AgregarTransportistaDeArcillaListActivity.this, "No se puede cargar el código.",
                                 Toast.LENGTH_LONG).show();
                     }
                 });
@@ -184,33 +186,33 @@ public class AgregarClienteListActivity extends AppCompatActivity {
     public static class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final AgregarClienteListActivity mParentActivity;
-        private final List<DummyContent.Cliente> mValues;
+        private final AgregarTransportistaDeArcillaListActivity mParentActivity;
+        private final List<DummyContent.TransArcilla> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DummyContent.Cliente item = (DummyContent.Cliente) view.getTag();
+                DummyContent.TransArcilla item = (DummyContent.TransArcilla) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
-                    arguments.putString(AgregarClienteDetailFragment.ARG_ITEM_ID, item.getId());
-                    AgregarClienteDetailFragment fragment = new AgregarClienteDetailFragment();
+                    arguments.putString(AgregarTransportistaDeArcillaDetailFragment.ARG_ITEM_ID, item.getId());
+                    AgregarTransportistaDeArcillaDetailFragment fragment = new AgregarTransportistaDeArcillaDetailFragment();
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.agregarcliente_detail_container, fragment)
+                            .replace(R.id.agregartransportistadearcilla_detail_container, fragment)
                             .commit();
                 } else {
                     Context context = view.getContext();
-                    Intent intent = new Intent(context, AgregarClienteDetailActivity.class);
-                    intent.putExtra(AgregarClienteDetailFragment.ARG_ITEM_ID, item.getId());
+                    Intent intent = new Intent(context, AgregarTransportistaDeArcillaDetailActivity.class);
+                    intent.putExtra(AgregarTransportistaDeArcillaDetailFragment.ARG_ITEM_ID, item.getId());
 
                     context.startActivity(intent);
                 }
             }
         };
 
-        SimpleItemRecyclerViewAdapter(AgregarClienteListActivity parent,
-                                      List<DummyContent.Cliente> items,
+        SimpleItemRecyclerViewAdapter(AgregarTransportistaDeArcillaListActivity parent,
+                                      List<DummyContent.TransArcilla> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;
@@ -220,7 +222,7 @@ public class AgregarClienteListActivity extends AppCompatActivity {
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.agregarcliente_list_content, parent, false);
+                    .inflate(R.layout.agregartransportistadearcilla_list_content, parent, false);
             return new ViewHolder(view);
         }
 
@@ -228,19 +230,19 @@ public class AgregarClienteListActivity extends AppCompatActivity {
         public void onBindViewHolder(final ViewHolder holder, final int position) {
             holder.mIdView.setText(mValues.get(position).getTelefono());
             holder.mContentView.setText(mValues.get(position).getNombre());
-            holder.mContentViewap.setText(mValues.get(position).getCiudad());
-            holder.mContentViewnit.setText(mValues.get(position).getNit());
+            holder.mContentViewco.setText(mValues.get(position).getCooperativa());
+            holder.mContentViewpl.setText(mValues.get(position).getPlaca());
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
-            holder.btnDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference reference = database.getReference(PATH_FOOD);
-                    reference.child(mValues.get(position).getId()).removeValue();
-                }
-            });
+//            holder.btnADelete.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+//                    DatabaseReference reference = database.getReference(PATH_FOOD);
+//                    reference.child(mValues.get(position).getId()).removeValue();
+//                }
+//            });
         }
 
         @Override
@@ -251,21 +253,18 @@ public class AgregarClienteListActivity extends AppCompatActivity {
         class ViewHolder extends RecyclerView.ViewHolder {
             final TextView mIdView;
             final TextView mContentView;
-            final TextView mContentViewap;
-            final TextView mContentViewnit;
-            @BindView(R.id.btnDelete)
-            Button btnDelete;
+            final TextView mContentViewco;
+            final TextView mContentViewpl;
 
+            @BindView(R.id.btnADelete)
+            Button btnADelete;
             ViewHolder(View view) {
                 super(view);
-                ButterKnife.bind(this, view);
-                mIdView = (TextView) view.findViewById(R.id.telefono);
-                mContentView = (TextView) view.findViewById(R.id.nombre);
-                mContentViewap = (TextView) view.findViewById(R.id.ciudad);
-                mContentViewnit = (TextView) view.findViewById(R.id.nit);
+                mIdView = (TextView) view.findViewById(R.id.telefonoA);
+                mContentView = (TextView) view.findViewById(R.id.nombreA);
+                mContentViewco = (TextView) view.findViewById(R.id.cooperativaA);
+                mContentViewpl = (TextView) view.findViewById(R.id.placaA);
             }
         }
     }
 }
-
-

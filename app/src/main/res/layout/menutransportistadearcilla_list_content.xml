@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:orientation="horizontal">
     <ImageView
         android:layout_width="80dp"
         android:layout_height="match_parent"
-        android:text="@string/borrar"/>
+        android:text="borrar"/>
 
     <LinearLayout
         android:layout_width="220dp"
@@ -16,29 +15,34 @@
 
 
         <TextView
-            android:id="@+id/nombre"
+            android:id="@+id/AMnombre"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:textAppearance="?attr/textAppearanceListItem"
             android:background="@color/colorAccent"/>
         <TextView
-            android:id="@+id/telefono"
+            android:id="@+id/AMtelefono"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:background="@color/colorAccent"
             android:textAppearance="?attr/textAppearanceListItem" />
         <TextView
-            android:id="@+id/ciudad"
+            android:id="@+id/AMcooperativa"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:background="@color/colorAccent"
             android:textAppearance="?attr/textAppearanceListItem" />
         <TextView
-            android:id="@+id/nit"
+            android:id="@+id/AMplaca"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/colorAccent"
+            android:textAppearance="?attr/textAppearanceListItem" />
+        <TextView
+            android:id="@+id/AMarcilla"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:background="@color/colorAccent"
             android:textAppearance="?attr/textAppearanceListItem" />
     </LinearLayout>
-
 </LinearLayout>

@@ -35,4 +35,10 @@
     <string name="borrar">Borrar</string>
     <string name="title_agregarobrero_list">AgregarObreros</string>
     <string name="title_agregarobrero_detail">AgregarObrero Detail</string>
+    <string name="title_agregartransportistadearcilla_list">AgregarTransportistasDeArcilla</string>
+    <string name="title_agregartransportistadearcilla_detail">AgregarTransportistaDeArcilla Detail
+    </string>
+    <string name="title_menutransportistadearcilla_list">MenuTransportistasDeArcilla</string>
+    <string name="title_menutransportistadearcilla_detail">MenuTransportistaDeArcilla Detail
+    </string>
 </resources>

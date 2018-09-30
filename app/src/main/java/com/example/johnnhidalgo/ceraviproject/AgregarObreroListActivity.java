@@ -78,7 +78,7 @@ public class AgregarObreroListActivity extends AppCompatActivity {
         setupRecyclerView((RecyclerView) recyclerView);
     }
 
-    private void setupRecyclerView( final RecyclerView recyclerView) {
+    private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMSOb, mTwoPaneOb));
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(PATH_FOODOb);
@@ -87,7 +87,6 @@ public class AgregarObreroListActivity extends AppCompatActivity {
             public void onChildAdded( DataSnapshot dataSnapshot,  String s) {
                 DummyContent.Obrero obrero =dataSnapshot.getValue(DummyContent.Obrero.class);
                 obrero.setId(dataSnapshot.getKey());
-
                 if (!DummyContent.ITEMSOb.contains(obrero)) {
                     DummyContent.addItemOb(obrero);
                 }
@@ -250,7 +249,6 @@ public class AgregarObreroListActivity extends AppCompatActivity {
             final TextView mContentViewap;
             @BindView(R.id.btnDeleteO)
             Button btnDelete;
-
             ViewHolder(View view) {
                 super(view);
                 ButterKnife.bind(this, view);
