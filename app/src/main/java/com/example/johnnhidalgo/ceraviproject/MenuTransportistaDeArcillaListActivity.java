@@ -26,8 +26,8 @@ import butterknife.ButterKnife;
 
 public class MenuTransportistaDeArcillaListActivity extends AppCompatActivity {
 
-    private boolean mTwoPane;
-    private static final String PATH_FOOD = "TransportistasDeArcilla";
+    private boolean mTwoPanetra;
+    private static final String PATH_FOODTra = "TransportistasDeArcilla";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class MenuTransportistaDeArcillaListActivity extends AppCompatActivity {
         });
 
         if (findViewById(R.id.menutransportistadearcilla_detail_container) != null) {
-            mTwoPane = true;
+            mTwoPanetra = true;
         }
 
         View recyclerView = findViewById(R.id.menutransportistadearcilla_list);
@@ -58,9 +58,9 @@ public class MenuTransportistaDeArcillaListActivity extends AppCompatActivity {
 
     private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
 
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMSTRA, mTwoPane));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMSTRA, mTwoPanetra));
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference(PATH_FOOD);
+        DatabaseReference reference = database.getReference(PATH_FOODTra);
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded( DataSnapshot dataSnapshot,  String s) {
@@ -140,8 +140,8 @@ public class MenuTransportistaDeArcillaListActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mIdView.setText(mValues.get(position).getId());
-            holder.mContentView.setText(mValues.get(position).getTelefono());
+            holder.mIdView.setText(mValues.get(position).getTelefono());
+            holder.mContentView.setText(mValues.get(position).getNombre());
             holder.mContentViewco.setText(mValues.get(position).getCooperativa());
             holder.mContentViewpl.setText(mValues.get(position).getPlaca());
 
@@ -159,16 +159,14 @@ public class MenuTransportistaDeArcillaListActivity extends AppCompatActivity {
             final TextView mContentView;
             final TextView mContentViewco;
             final TextView mContentViewpl;
-            final TextView mContentViewar;
 
             ViewHolder(View view) {
                 super(view);
                 ButterKnife.bind(this, view);
                 mIdView = (TextView) view.findViewById(R.id.AMtelefono);
-                mContentView = (TextView) view.findViewById(R.id.AMtelefono);
+                mContentView = (TextView) view.findViewById(R.id.AMnombre);
                 mContentViewco = (TextView) view.findViewById(R.id.AMcooperativa);
                 mContentViewpl = (TextView) view.findViewById(R.id.AMplaca);
-                mContentViewar = (TextView) view.findViewById(R.id.AMarcilla);
 
             }
         }
