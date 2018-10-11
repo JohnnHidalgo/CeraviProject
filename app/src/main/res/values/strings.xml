@@ -41,4 +41,7 @@
     <string name="title_menutransportistadearcilla_list">MenuTransportistasDeArcilla</string>
     <string name="title_menutransportistadearcilla_detail">MenuTransportistaDeArcilla Detail
     </string>
+    <string name="title_menutransportistadeladrillo_list">MenuTransportistasDeLadrillo</string>
+    <string name="title_menutransportistadeladrillo_detail">MenuTransportistaDeLadrillo Detail
+    </string>
 </resources>

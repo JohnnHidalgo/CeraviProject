@@ -4,13 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -39,9 +36,10 @@ import butterknife.OnClick;
 
 public class AgregarTransportistaDeArcillaListActivity extends AppCompatActivity {
 
-    private static final String PATH_FOOD = "TransportistasDeArcilla";
-    private static final String PATH_PROFILE = "profile";
-    private static final String PATH_CODE = "code";
+    private static final String PATH_FOODTR = "TransportistasDeArcilla";
+    private static final String PATH_PROFILETR = "profile";
+    private static final String PATH_CODETR = "code";
+
     @BindView(R.id.AName)
     EditText AName;
     @BindView(R.id.ATelefono)
@@ -63,15 +61,6 @@ public class AgregarTransportistaDeArcillaListActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         if (findViewById(R.id.agregartransportistadearcilla_detail_container) != null) {
             mTwoPane = true;
         }
@@ -84,7 +73,7 @@ public class AgregarTransportistaDeArcillaListActivity extends AppCompatActivity
     private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMSTRA, mTwoPane));
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference(PATH_FOOD);
+        DatabaseReference reference = database.getReference(PATH_FOODTR);
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded( DataSnapshot dataSnapshot,  String s) {
@@ -129,59 +118,20 @@ public class AgregarTransportistaDeArcillaListActivity extends AppCompatActivity
             }
         });
     }
+
     @OnClick(R.id.btnASave)
     public void onViewClicked() {
         DummyContent.TransArcilla transArcilla =  new DummyContent.TransArcilla(AName.getText().toString().trim(),ATelefono.getText().toString().trim(),
                                                         ACooperativa.getText().toString().trim(),APlaca.getText().toString().trim());
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference(PATH_FOOD);
+        DatabaseReference reference = database.getReference(PATH_FOODTR);
         reference.push().setValue(transArcilla);
         AName.setText("");
         ATelefono.setText("");
         ACooperativa.setText("");
         APlaca.setText("");
-
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_info:
-                final TextView tvCode = new TextView(this);
-
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                tvCode.setLayoutParams(params);
-                tvCode.setGravity(Gravity.CENTER_HORIZONTAL);
-                tvCode.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28);
-
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference reference = database.getReference(PATH_PROFILE).child(PATH_CODE);
-
-                reference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        tvCode.setText(dataSnapshot.getValue(String.class));
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Toast.makeText(AgregarTransportistaDeArcillaListActivity.this, "No se puede cargar el código.",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                        .setTitle(R.string.clienteList_dialog_title)
-                        .setPositiveButton(R.string.comidaList_dialog_ok, null);
-                builder.setView(tvCode);
-                builder.show();
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     public static class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
@@ -235,14 +185,16 @@ public class AgregarTransportistaDeArcillaListActivity extends AppCompatActivity
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
-//            holder.btnADelete.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-//                    DatabaseReference reference = database.getReference(PATH_FOOD);
-//                    reference.child(mValues.get(position).getId()).removeValue();
-//                }
-//            });
+
+            holder.btnDeleteTr.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference reference = database.getReference(PATH_FOODTR);
+                    reference.child(mValues.get(position).getId()).removeValue();
+                }
+            });
+
         }
 
         @Override
@@ -256,10 +208,12 @@ public class AgregarTransportistaDeArcillaListActivity extends AppCompatActivity
             final TextView mContentViewco;
             final TextView mContentViewpl;
 
-            @BindView(R.id.btnADelete)
-            Button btnADelete;
+            @BindView(R.id.btnDeleteTr)
+            Button btnDeleteTr;
+
             ViewHolder(View view) {
                 super(view);
+                ButterKnife.bind(this, view);
                 mIdView = (TextView) view.findViewById(R.id.telefonoA);
                 mContentView = (TextView) view.findViewById(R.id.nombreA);
                 mContentViewco = (TextView) view.findViewById(R.id.cooperativaA);

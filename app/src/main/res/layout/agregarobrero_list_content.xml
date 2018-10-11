@@ -36,6 +36,7 @@
             android:textAppearance="?attr/textAppearanceListItem" />
 
     </LinearLayout>
+
     <Button
         android:id="@+id/btnDeleteO"
         android:layout_width="55dp"

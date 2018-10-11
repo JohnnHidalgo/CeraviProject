@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,13 +13,8 @@
     android:showDividers="middle"
     tools:context=".MenuTransportistaDeArcillaListActivity">
 
-    <!--
-    This layout is a two-pane layout for the MenuTransportistasDeArcilla
-    master/detail flow.
-    
-    -->
-
-    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/menutransportistadearcilla_list"
         android:name="com.example.johnnhidalgo.ceraviproject.MenuTransportistaDeArcillaListFragment"

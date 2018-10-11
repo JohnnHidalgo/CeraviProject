@@ -8,8 +8,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -35,7 +33,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
 
 public class AgregarClienteListActivity extends AppCompatActivity {
 
@@ -64,15 +61,6 @@ public class AgregarClienteListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         if (findViewById(R.id.agregarcliente_detail_container) != null) {
             mTwoPane = true;
         }
@@ -91,7 +79,6 @@ public class AgregarClienteListActivity extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 DummyContent.Cliente cliente = dataSnapshot.getValue(DummyContent.Cliente.class);
                 cliente.setId(dataSnapshot.getKey());
-
                 if (!DummyContent.ITEMS.contains(cliente)) {
                     DummyContent.addItem(cliente);
                 }
@@ -139,47 +126,8 @@ public class AgregarClienteListActivity extends AppCompatActivity {
         etTelefono.setText("");
         etCiudad.setText("");
         etNit.setText("");
-
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_info:
-                final TextView tvCode = new TextView(this);
-
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                tvCode.setLayoutParams(params);
-                tvCode.setGravity(Gravity.CENTER_HORIZONTAL);
-                tvCode.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28);
-
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference reference = database.getReference(PATH_PROFILE).child(PATH_CODE);
-
-                reference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        tvCode.setText(dataSnapshot.getValue(String.class));
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Toast.makeText(AgregarClienteListActivity.this, "No se puede cargar el código.",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                        .setTitle(R.string.clienteList_dialog_title)
-                        .setPositiveButton(R.string.comidaList_dialog_ok, null);
-                builder.setView(tvCode);
-                builder.show();
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     public static class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
@@ -233,6 +181,7 @@ public class AgregarClienteListActivity extends AppCompatActivity {
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
+
             holder.btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -253,6 +202,7 @@ public class AgregarClienteListActivity extends AppCompatActivity {
             final TextView mContentView;
             final TextView mContentViewap;
             final TextView mContentViewnit;
+
             @BindView(R.id.btnDelete)
             Button btnDelete;
 

@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.example.johnnhidalgo.ceraviproject.dummy.DummyContent;
 
-
 public class AgregarObreroDetailFragment extends Fragment {
 
     public static final String ARG_ITEM_ID = "item_id";

@@ -107,7 +107,7 @@
         <activity
             android:name=".MenuTransportistaDeArcillaListActivity"
             android:label="@string/title_menutransportistadearcilla_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MenuTransportistaDeArcillaDetailActivity"
             android:label="@string/title_menutransportistadearcilla_detail"
@@ -116,6 +116,19 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.johnnhidalgo.ceraviproject.MenuTransportistaDeArcillaListActivity" />
+        </activity>
+        <activity
+            android:name=".MenuTransportistaDeLadrilloListActivity"
+            android:label="@string/title_menutransportistadeladrillo_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".MenuTransportistaDeLadrilloDetailActivity"
+            android:label="@string/title_menutransportistadeladrillo_detail"
+            android:parentActivityName=".MenuTransportistaDeLadrilloListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.johnnhidalgo.ceraviproject.MenuTransportistaDeLadrilloListActivity" />
         </activity>
     </application>
 

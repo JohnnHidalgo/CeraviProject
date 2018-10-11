@@ -17,7 +17,6 @@ public class AgregarTransportistaDeArcillaDetailFragment extends Fragment {
 
     private DummyContent.TransArcilla mItem;
 
-
     public AgregarTransportistaDeArcillaDetailFragment() {
     }
 
@@ -46,7 +45,6 @@ public class AgregarTransportistaDeArcillaDetailFragment extends Fragment {
             ((TextView) rootView.findViewById(R.id.agregartransportistadearcilla_detail)).setText(mItem.getCooperativa());
 
         }
-
         return rootView;
     }
 }

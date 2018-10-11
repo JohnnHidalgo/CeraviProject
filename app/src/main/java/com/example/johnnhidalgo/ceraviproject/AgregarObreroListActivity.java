@@ -60,14 +60,7 @@ public class AgregarObreroListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         if (findViewById(R.id.agregarobrero_detail_container) != null) {
             mTwoPaneOb = true;
@@ -138,45 +131,6 @@ public class AgregarObreroListActivity extends AppCompatActivity {
         etCiudad.setText("");
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_info:
-                final TextView tvCode = new TextView(this);
-
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                tvCode.setLayoutParams(params);
-                tvCode.setGravity(Gravity.CENTER_HORIZONTAL);
-                tvCode.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28);
-
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference reference = database.getReference(PATH_PROFILEOb).child(PATH_CODEOb);
-
-                reference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        tvCode.setText(dataSnapshot.getValue(String.class));
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Toast.makeText(AgregarObreroListActivity.this, "No se puede cargar el código.",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                        .setTitle(R.string.clienteList_dialog_title)
-                        .setPositiveButton(R.string.comidaList_dialog_ok, null);
-                builder.setView(tvCode);
-                builder.show();
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     public static class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
@@ -228,6 +182,7 @@ public class AgregarObreroListActivity extends AppCompatActivity {
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
+
             holder.btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -247,6 +202,7 @@ public class AgregarObreroListActivity extends AppCompatActivity {
             final TextView mIdView;
             final TextView mContentView;
             final TextView mContentViewap;
+
             @BindView(R.id.btnDeleteO)
             Button btnDelete;
             ViewHolder(View view) {
