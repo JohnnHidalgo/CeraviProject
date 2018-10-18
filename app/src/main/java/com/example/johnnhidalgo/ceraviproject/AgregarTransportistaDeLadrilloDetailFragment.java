@@ -11,12 +11,13 @@ import android.widget.TextView;
 
 import com.example.johnnhidalgo.ceraviproject.dummy.DummyContent;
 
-public class MenuTransportistaDeLadrilloDetailFragment extends Fragment {
+public class AgregarTransportistaDeLadrilloDetailFragment extends Fragment {
 
     public static final String ARG_ITEM_ID = "item_id";
+
     private DummyContent.TransLadrillo mItem;
 
-    public MenuTransportistaDeLadrilloDetailFragment() {
+    public AgregarTransportistaDeLadrilloDetailFragment() {
     }
 
     @Override
@@ -24,7 +25,6 @@ public class MenuTransportistaDeLadrilloDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-
             mItem = DummyContent.ITEM_MAPTRL.get(getArguments().getString(ARG_ITEM_ID));
 
             Activity activity = this.getActivity();
@@ -34,15 +34,15 @@ public class MenuTransportistaDeLadrilloDetailFragment extends Fragment {
             }
         }
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.menutransportistadeladrillo_detail, container, false);
+        View rootView = inflater.inflate(R.layout.agregartransportistadeladrillo_detail, container, false);
 
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.menutransportistadeladrillo_detail)).setText(mItem.getTelefono());
+            ((TextView) rootView.findViewById(R.id.agregartransportistadeladrillo_detail)).setText(mItem.getTelefono());
         }
-
         return rootView;
     }
 }

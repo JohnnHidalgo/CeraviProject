@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".AgregarTransportistaDeArcillaListActivity">
+    tools:context=".AgregarTransportistaDeLadrilloListActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -40,12 +40,12 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="300dp"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <EditText
-                        android:id="@+id/AName"
+                        android:id="@+id/LName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Nombre Completo"
@@ -54,7 +54,7 @@
                         android:nextFocusForward="@id/etTelefono" />
 
                     <EditText
-                        android:id="@+id/ATelefono"
+                        android:id="@+id/LCooperativa"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Telefono"
@@ -62,20 +62,14 @@
                         android:inputType="number|phone" />
 
                     <EditText
-                        android:id="@+id/ACooperativa"
+                        android:id="@+id/LTelefono"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Cooperativa"
                         android:inputType="textCapWords|textCapSentences" />
-                    <EditText
-                        android:id="@+id/Aplaca"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Placa"
-                        android:inputType="textCapWords|textCapSentences" />
                 </LinearLayout>
                 <Button
-                    android:id="@+id/btnASave"
+                    android:id="@+id/LbtnASave"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minWidth="88dp"
@@ -83,8 +77,9 @@
                     android:layout_gravity="center"/>
             </LinearLayout>
 
-            <include layout="@layout/agregartransportistadearcilla_list" />
+            <include layout="@layout/agregartransportistadeladrillo_list" />
         </LinearLayout>
 
     </FrameLayout>
+
 </android.support.design.widget.CoordinatorLayout>

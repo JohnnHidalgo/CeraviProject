@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="150dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="horizontal">
     <ImageView
         android:layout_width="80dp"
         android:layout_height="match_parent"
-        android:text="Borrar"/>
+        android:text="@string/borrar"/>
 
     <LinearLayout
         android:layout_width="220dp"
@@ -15,22 +14,30 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/LNombre"
+            android:id="@+id/LaNombre"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:textAppearance="?attr/textAppearanceListItem"
             android:background="@color/colorAccent"/>
         <TextView
-            android:id="@+id/LCooperativa"
+            android:id="@+id/LaTelefono"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:background="@color/colorAccent"
             android:textAppearance="?attr/textAppearanceListItem" />
         <TextView
-            android:id="@+id/LTelefono"
+            android:id="@+id/LaCooperativa"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:background="@color/colorAccent"
             android:textAppearance="?attr/textAppearanceListItem" />
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnDeleteTr"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:text="Borrar"
+        android:layout_gravity="center"/>
 </LinearLayout>

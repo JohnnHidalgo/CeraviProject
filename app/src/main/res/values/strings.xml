@@ -44,4 +44,9 @@
     <string name="title_menutransportistadeladrillo_list">MenuTransportistasDeLadrillo</string>
     <string name="title_menutransportistadeladrillo_detail">MenuTransportistaDeLadrillo Detail
     </string>
+    <string name="title_agregartransportistadeladrillo_list">ItemsAgregarTransportistasDeLadrillo
+    </string>
+    <string name="title_agregartransportistadeladrillo_detail">AgregarTransportistaDeLadrillo
+        Detail
+    </string>
 </resources>

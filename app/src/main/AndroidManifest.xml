@@ -120,7 +120,7 @@
         <activity
             android:name=".MenuTransportistaDeLadrilloListActivity"
             android:label="@string/title_menutransportistadeladrillo_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MenuTransportistaDeLadrilloDetailActivity"
             android:label="@string/title_menutransportistadeladrillo_detail"
@@ -129,6 +129,19 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.johnnhidalgo.ceraviproject.MenuTransportistaDeLadrilloListActivity" />
+        </activity>
+        <activity
+            android:name=".AgregarTransportistaDeLadrilloListActivity"
+            android:label="@string/title_agregartransportistadeladrillo_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".AgregarTransportistaDeLadrilloDetailActivity"
+            android:label="@string/title_agregartransportistadeladrillo_detail"
+            android:parentActivityName=".AgregarTransportistaDeLadrilloListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.johnnhidalgo.ceraviproject.AgregarTransportistaDeLadrilloListActivity" />
         </activity>
     </application>
 

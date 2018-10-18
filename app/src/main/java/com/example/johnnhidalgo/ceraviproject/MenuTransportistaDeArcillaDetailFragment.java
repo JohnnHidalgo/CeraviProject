@@ -18,12 +18,15 @@ public class MenuTransportistaDeArcillaDetailFragment extends Fragment {
 
     public MenuTransportistaDeArcillaDetailFragment() {
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
+
             mItem = DummyContent.ITEM_MAPTRA.get(getArguments().getString(ARG_ITEM_ID));
+
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layoutmenuTrarcilla);
             if (appBarLayout != null) {
