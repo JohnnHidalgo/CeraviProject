@@ -159,11 +159,9 @@ public class MenuTransportistaDeLadrilloListActivity extends AppCompatActivity {
             ViewHolder(View view) {
                 super(view);
                 ButterKnife.bind(this, view);
-                mIdView = (TextView) view.findViewById(R.id.LTelefono);
-                mContentView = (TextView) view.findViewById(R.id.LNombre);
-                mContentViewco = (TextView) view.findViewById(R.id.LCooperativa);
-
-
+                mIdView = (TextView) view.findViewById(R.id.LMTelefono);
+                mContentView = (TextView) view.findViewById(R.id.LMNombre);
+                mContentViewco = (TextView) view.findViewById(R.id.LMCooperativa);
             }
         }
     }

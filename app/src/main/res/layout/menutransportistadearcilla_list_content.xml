@@ -38,6 +38,6 @@
             android:layout_height="30dp"
             android:background="@color/colorAccent"
             android:textAppearance="?attr/textAppearanceListItem" />
-
     </LinearLayout>
+
 </LinearLayout>

@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="100dp"
     android:orientation="horizontal">
     <ImageView
         android:layout_width="80dp"
@@ -15,19 +15,19 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/LNombre"
+            android:id="@+id/LMNombre"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:textAppearance="?attr/textAppearanceListItem"
             android:background="@color/colorAccent"/>
         <TextView
-            android:id="@+id/LCooperativa"
+            android:id="@+id/LMCooperativa"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:background="@color/colorAccent"
             android:textAppearance="?attr/textAppearanceListItem" />
         <TextView
-            android:id="@+id/LTelefono"
+            android:id="@+id/LMTelefono"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:background="@color/colorAccent"

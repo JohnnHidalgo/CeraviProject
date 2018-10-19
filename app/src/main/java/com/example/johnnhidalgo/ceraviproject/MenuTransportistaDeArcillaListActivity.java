@@ -23,7 +23,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 import butterknife.ButterKnife;
 
-
 public class MenuTransportistaDeArcillaListActivity extends AppCompatActivity {
 
     private boolean mTwoPanetra;
@@ -166,7 +165,6 @@ public class MenuTransportistaDeArcillaListActivity extends AppCompatActivity {
                 mContentView = (TextView) view.findViewById(R.id.AMnombre);
                 mContentViewco = (TextView) view.findViewById(R.id.AMcooperativa);
                 mContentViewpl = (TextView) view.findViewById(R.id.AMplaca);
-
             }
         }
     }

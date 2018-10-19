@@ -99,6 +99,7 @@ public class AgregarTransportistaDeLadrilloListActivity extends AppCompatActivit
                     DummyContent.deleteItemTrl(transLadrillo);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
+
             }
 
             @Override
@@ -115,7 +116,8 @@ public class AgregarTransportistaDeLadrilloListActivity extends AppCompatActivit
 
     @OnClick(R.id.LbtnASave)
     public void onViewClicked() {
-        DummyContent.TransLadrillo transLadrillo = new DummyContent.TransLadrillo(LName.getText().toString().trim(),LCooperativa.getText().toString().trim(),
+        DummyContent.TransLadrillo transLadrillo = new DummyContent.TransLadrillo(LName.getText().toString().trim(),
+                LCooperativa.getText().toString().trim(),
                 LTelefono.getText().toString().trim());
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(PATH_FOODTL);
@@ -172,13 +174,22 @@ public class AgregarTransportistaDeLadrilloListActivity extends AppCompatActivit
         }
 
         @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
+        public void onBindViewHolder(final ViewHolder holder, final int position) {
             holder.mIdView.setText(mValues.get(position).getTelefono());
             holder.mContentView.setText(mValues.get(position).getNombre());
             holder.mContentViewco.setText(mValues.get(position).getCooperativa());
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
+
+            holder.btnDeleteTl.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference reference = database.getReference(PATH_FOODTL);
+                    reference.child(mValues.get(position).getId()).removeValue();
+                }
+            });
         }
 
         @Override
@@ -190,6 +201,9 @@ public class AgregarTransportistaDeLadrilloListActivity extends AppCompatActivit
             final TextView mIdView;
             final TextView mContentView;
             final TextView mContentViewco;
+
+            @BindView(R.id.btnDeleteTl)
+            Button btnDeleteTl;
 
             ViewHolder(View view) {
                 super(view);

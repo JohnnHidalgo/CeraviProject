@@ -137,6 +137,7 @@ public class AgregarTransportistaDeArcillaListActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 DummyContent.TransArcilla item = (DummyContent.TransArcilla) view.getTag();
+
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
                     arguments.putString(AgregarTransportistaDeArcillaDetailFragment.ARG_ITEM_ID, item.getId());
@@ -208,6 +209,7 @@ public class AgregarTransportistaDeArcillaListActivity extends AppCompatActivity
             ViewHolder(View view) {
                 super(view);
                 ButterKnife.bind(this, view);
+
                 mIdView = (TextView) view.findViewById(R.id.telefonoA);
                 mContentView = (TextView) view.findViewById(R.id.nombreA);
                 mContentViewco = (TextView) view.findViewById(R.id.cooperativaA);

@@ -379,6 +379,7 @@ public class DummyContent {
         ITEMSTRL.remove(transLadrillo);
         ITEM_MAPTRL.remove(transLadrillo);
     }
+
     private static TransLadrillo createDummyItemTRL(int position) {
         return new TransLadrillo(String.valueOf(position), "Item " + position, makeDetailsTRL(position));
     }

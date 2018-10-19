@@ -51,23 +51,25 @@
                         android:hint="Nombre Completo"
                         android:imeOptions="actionNext"
                         android:inputType="textCapWords|textCapSentences"
-                        android:nextFocusForward="@id/etTelefono" />
-
-                    <EditText
-                        android:id="@+id/LCooperativa"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Telefono"
-                        android:imeOptions="actionNext"
-                        android:inputType="number|phone" />
+                        android:nextFocusForward="@id/LTelefono" />
 
                     <EditText
                         android:id="@+id/LTelefono"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:hint="Telefono"
+                        android:imeOptions="actionNext"
+                        android:inputType="number|phone"
+                        android:nextFocusForward="@id/LCooperativa"/>
+
+                    <EditText
+                        android:id="@+id/LCooperativa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:hint="Cooperativa"
                         android:inputType="textCapWords|textCapSentences" />
                 </LinearLayout>
+
                 <Button
                     android:id="@+id/LbtnASave"
                     android:layout_width="wrap_content"
