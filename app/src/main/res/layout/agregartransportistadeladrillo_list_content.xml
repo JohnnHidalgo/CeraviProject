@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="100dp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@color/colorIcons">
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="match_parent"
-        android:text="@string/borrar"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/twotone_person_outline_black_18dp"/>
 
     <LinearLayout
-        android:layout_width="220dp"
+        android:layout_width="320dp"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
@@ -36,8 +37,8 @@
 
     <Button
         android:id="@+id/btnDeleteTl"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:text="Borrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/outline_delete_black_18dp"
         android:layout_gravity="center"/>
 </LinearLayout>

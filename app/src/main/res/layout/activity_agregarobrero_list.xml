@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".AgregarObreroListActivity">
+    tools:context=".AgregarObreroListActivity"
+    android:background="@color/colorPrimary">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -26,7 +27,8 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:background="@color/colorIcons">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,7 +60,8 @@
                         android:layout_height="wrap_content"
                         android:hint="telefono"
                         android:imeOptions="actionNext"
-                        android:inputType="number|phone" />
+                        android:inputType="number|phone"
+                        android:nextFocusForward="@id/etCiudadO"/>
 
                     <EditText
                         android:id="@+id/etCiudadO"
@@ -72,6 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minWidth="88dp"
+                    android:src="@drawable/baseline_save_black_18dp"
                     android:text="guardar"
                     android:layout_gravity="center"/>
             </LinearLayout>
