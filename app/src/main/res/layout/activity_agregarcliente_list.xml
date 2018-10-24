@@ -42,7 +42,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="300dp"
+                    android:layout_width="320dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
@@ -50,7 +50,7 @@
                         android:id="@+id/etName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="nombre"
+                        android:hint="@string/nombre_completo"
                         android:imeOptions="actionNext"
                         android:inputType="textCapWords|textCapSentences"
                         android:nextFocusForward="@id/etTelefono" />
@@ -59,7 +59,7 @@
                         android:id="@+id/etTelefono"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="telefono"
+                        android:hint="Telefono"
                         android:imeOptions="actionNext"
                         android:inputType="number|phone"
                         android:nextFocusForward="@id/etCiudad"/>
@@ -68,14 +68,14 @@
                         android:id="@+id/etCiudad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="ciudad"
+                        android:hint="Ciudad"
                         android:inputType="textCapWords|textCapSentences"
                         android:nextFocusForward="@id/etNit" />
                     <EditText
                         android:id="@+id/etNit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="nit"
+                        android:hint="Nit"
                         android:inputType="textCapWords|textCapSentences" />
                 </LinearLayout>
                 <Button
@@ -83,8 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minWidth="88dp"
-                    android:src="@drawable/baseline_save_black_18dp"
-                android:text="guardar"
+                    android:text="Guardar"
                     android:layout_gravity="center"/>
             </LinearLayout>
 

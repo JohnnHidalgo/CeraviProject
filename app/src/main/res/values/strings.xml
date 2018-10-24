@@ -49,4 +49,6 @@
     <string name="title_agregartransportistadeladrillo_detail">AgregarTransportistaDeLadrillo
         Detail
     </string>
+    <string name="nombre_completo">Nombre Completo</string>
+    <string name="eliminar">Eliminar</string>
 </resources>

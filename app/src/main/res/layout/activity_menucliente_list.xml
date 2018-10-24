@@ -38,8 +38,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/baseline_person_add_white_18dp"
-        app:rippleColor="@android:color/white"/>
+        android:backgroundTint="@color/colorPrimary"
+        app:rippleColor="@android:color/white"
+        app:srcCompat="@drawable/baseline_person_add_white_18dp"/>
 
 
 </android.support.design.widget.CoordinatorLayout>
