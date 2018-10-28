@@ -40,7 +40,8 @@ public class MenuTransportistaDeArcillaDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.menutransportistadearcilla_detail, container, false);
 
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.menutransportistadearcilla_detail)).setText(mItem.getTelefono());
+ //           ((TextView) rootView.findViewById(R.id.menutransportistadearcilla_detail)).setText(mItem.getTelefono());
+            ((TextView) rootView.findViewById(R.id.menutransportistadearcilla_detail)).setText("Telefono :"+mItem.getTelefono()+"\n\nCooperativa :"+mItem.getCooperativa()+"\n\nPlaca :"+mItem.getPlaca());
         }
         return rootView;
     }

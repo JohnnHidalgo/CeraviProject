@@ -41,8 +41,7 @@ public class AgregarTransportistaDeArcillaDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.agregartransportistadearcilla_detail, container, false);
 
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.agregartransportistadearcilla_detail)).setText(mItem.getTelefono());
-            ((TextView) rootView.findViewById(R.id.agregartransportistadearcilla_detail)).setText(mItem.getCooperativa());
+            ((TextView) rootView.findViewById(R.id.agregartransportistadearcilla_detail)).setText("Telefono :"+mItem.getTelefono()+"\n\nCooperativa :"+mItem.getCooperativa()+"\n\nPlaca :"+mItem.getPlaca());
 
         }
         return rootView;

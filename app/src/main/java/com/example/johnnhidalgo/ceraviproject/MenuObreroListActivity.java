@@ -23,7 +23,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 import butterknife.ButterKnife;
 
-
 public class MenuObreroListActivity extends AppCompatActivity {
 
     private boolean mTwoPaneOb;
@@ -101,6 +100,7 @@ public class MenuObreroListActivity extends AppCompatActivity {
         private final List<DummyContent.Obrero> mValues;
         private final boolean mTwoPaneOb;//mTwoPaneOb
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 DummyContent.Obrero item = (DummyContent.Obrero) view.getTag();
@@ -114,12 +114,14 @@ public class MenuObreroListActivity extends AppCompatActivity {
                             .commit();
                 } else {
                     Context context = view.getContext();
-                    Intent intent = new Intent(context, MenuObreroListActivity.class);
+                    Intent intent = new Intent(context, MenuObreroDetailActivity.class);
                     intent.putExtra(MenuObreroDetailFragment.ARG_ITEM_ID, item.getId());
 
                     context.startActivity(intent);
                 }
             }
+
+
         };
 
         SimpleItemRecyclerViewAdapter(MenuObreroListActivity parent,

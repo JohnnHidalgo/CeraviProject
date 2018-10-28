@@ -32,12 +32,13 @@ public class MenuClienteDetailFragment extends Fragment {
             }
         }
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.menucliente_detail, container, false);
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.menucliente_detail)).setText(mItem.getTelefono());
+            ((TextView) rootView.findViewById(R.id.menucliente_detail)).setText("Telefono : "+mItem.getTelefono()+"\n\nCiudad : "+mItem.getCiudad()+"\n\nNit : "+mItem.getNit());
         }
         return rootView;
     }

@@ -18,13 +18,13 @@ public class MenuObreroDetailFragment extends Fragment {
 
     public MenuObreroDetailFragment() {
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             mItem = DummyContent.ITEM_MAPOb.get(getArguments().getString(ARG_ITEM_ID));
+
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layoutObrero);
             if (appBarLayout != null) {
@@ -37,11 +37,9 @@ public class MenuObreroDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.menuobrero_detail, container, false);
-
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.menuobrero_detail)).setText(mItem.getTelefono());
+            ((TextView) rootView.findViewById(R.id.menuobrero_detail)).setText("Telefono : "+mItem.getTelefono()+"\n\nCiudad : "+mItem.getCiudad());
         }
-
         return rootView;
     }
 }

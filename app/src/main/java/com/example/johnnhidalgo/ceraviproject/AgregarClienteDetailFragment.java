@@ -42,7 +42,8 @@ public class AgregarClienteDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.agregarcliente_detail, container, false);
 
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.agregarcliente_detail)).setText(mItem.getTelefono());
+            ((TextView) rootView.findViewById(R.id.agregarcliente_detail)).setText("Telefono : "+mItem.getTelefono()+"\n\nCiudad : "+mItem.getCiudad()+"\n\nNit : "+mItem.getNit());
+
         }
 
         return rootView;

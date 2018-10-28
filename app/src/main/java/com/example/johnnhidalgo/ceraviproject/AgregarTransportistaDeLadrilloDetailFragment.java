@@ -41,7 +41,8 @@ public class AgregarTransportistaDeLadrilloDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.agregartransportistadeladrillo_detail, container, false);
 
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.agregartransportistadeladrillo_detail)).setText(mItem.getTelefono());
+            ((TextView) rootView.findViewById(R.id.agregartransportistadeladrillo_detail)).setText("Telefono :"+mItem.getTelefono()+"\n\nCooperativa :"+mItem.getCooperativa());
+
         }
         return rootView;
     }

@@ -41,7 +41,8 @@ public class AgregarObreroDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.agregarobrero_detail, container, false);
 
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.agregarobrero_detail)).setText(mItem.getTelefono());
+            ((TextView) rootView.findViewById(R.id.agregarobrero_detail)).setText("Telefono : "+mItem.getTelefono()+"\n\nCiudad : "+mItem.getCiudad());
+
         }
 
         return rootView;

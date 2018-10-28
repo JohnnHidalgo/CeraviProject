@@ -40,7 +40,7 @@ public class MenuTransportistaDeLadrilloDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.menutransportistadeladrillo_detail, container, false);
 
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.menutransportistadeladrillo_detail)).setText(mItem.getTelefono());
+            ((TextView) rootView.findViewById(R.id.menutransportistadeladrillo_detail)).setText("Telefono :"+mItem.getTelefono()+"\n\nCooperativa :"+mItem.getCooperativa());
         }
 
         return rootView;
