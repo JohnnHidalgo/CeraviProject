@@ -31,9 +31,6 @@ import butterknife.OnClick;
 public class AgregarTransportistaDeLadrilloListActivity extends AppCompatActivity {
 
     private static final String PATH_FOODTL = "TransportistasDeLadrillo";
-    private static final String PATH_PROFILETL = "profile";
-    private static final String PATH_CODETL = "code";
-
     @BindView(R.id.LName)
     EditText LName;
     @BindView(R.id.LCooperativa)

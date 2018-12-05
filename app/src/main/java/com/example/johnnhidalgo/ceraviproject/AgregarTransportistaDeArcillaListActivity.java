@@ -31,8 +31,6 @@ import butterknife.OnClick;
 public class AgregarTransportistaDeArcillaListActivity extends AppCompatActivity {
 
     private static final String PATH_FOODTR = "TransportistasDeArcilla";
-    private static final String PATH_PROFILETR = "profile";
-    private static final String PATH_CODETR = "code";
 
     @BindView(R.id.AName)
     EditText AName;

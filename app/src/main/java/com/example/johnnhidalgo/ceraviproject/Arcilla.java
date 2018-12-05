@@ -1,7 +1,11 @@
 package com.example.johnnhidalgo.ceraviproject;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.CalendarContract;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -13,25 +17,127 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TableLayout;
+import android.widget.Toast;
 
-public class Arcilla extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.collection.LLRBNode;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+
+public class Arcilla extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private TableLayout tableLayout;
+    private EditText txtLastName;
+    private String[]header={"FECHA","HORA","TRANSPORTISTA"};
+    private ArrayList<String[]>rows= new ArrayList<>();
+    private TableDynamic tableDynamic;
+    static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    static SimpleDateFormat simpleHourFormat = new SimpleDateFormat("HH:mm:ss");
+
+    private DatabaseReference mDatabase;
+
+    private static final String PATH_FOOD = "T_Arcilla";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arcilla);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference reference = database.getReference(PATH_FOOD);
+        reference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                T_Arcilla t_arcilla =dataSnapshot.getValue(T_Arcilla.class);
+                t_arcilla.setId(dataSnapshot.getKey());
+
+                if (!T_Arcilla.ITEMS.contains(t_arcilla)) {
+                    t_arcilla.addItem(t_arcilla);
+
+                }
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                T_Arcilla t_arcilla =dataSnapshot.getValue(T_Arcilla.class);
+                t_arcilla.setId(dataSnapshot.getKey());
+
+                if (!T_Arcilla.ITEMS.contains(t_arcilla)) {
+                    t_arcilla.updateItem(t_arcilla);
+                }
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                T_Arcilla t_arcilla =dataSnapshot.getValue(T_Arcilla.class);
+                t_arcilla.setId(dataSnapshot.getKey());
+
+                if (!T_Arcilla.ITEMS.contains(t_arcilla)) {
+                    t_arcilla.deleteItem(t_arcilla);
+                }
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Toast.makeText(Arcilla.this, "Moved", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(Arcilla.this, "Cancelado", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.AgregarT_arcilla);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Calendar calendar = Calendar.getInstance();
+                T_Arcilla t_arcilla= new T_Arcilla(simpleDateFormat.format(calendar.getTime()),simpleHourFormat.format(calendar.getTime()) ,txtLastName.getText().toString());
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference reference = database.getReference(PATH_FOOD);
+                reference.push().setValue(t_arcilla);
+
+                String[]item= new String[]{simpleDateFormat.format(calendar.getTime()),simpleHourFormat.format(calendar.getTime()) ,txtLastName.getText().toString()};
+                tableDynamic.addItem(item);
+                txtLastName.setText("");
+
+
             }
         });
+
+        tableLayout=(TableLayout)findViewById(R.id.table);
+        txtLastName=(EditText)findViewById(R.id.TransportistaName);
+
+        tableDynamic= new TableDynamic(tableLayout,getApplicationContext());
+        tableDynamic.addHeader(header);
+        tableDynamic.backgroundHeader(Color.rgb(230,74,25));
+        tableDynamic.textColorHeader(Color.WHITE);
+
+
+        tableDynamic.addData(getClients());
+        tableDynamic.backgroundData(Color.BLUE,Color.GRAY);
+        tableDynamic.lineColor(Color.BLACK);
+        tableDynamic.textColorData(Color.WHITE);
+
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -41,6 +147,12 @@ public class Arcilla extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+    private ArrayList<String[]> getClients(){
+        rows.add(new String[]{"1","Pedro","Lop"});
+        rows.add(new String[]{"2","Pepe","Lopz"});
+        rows.add(new String[]{"3","Peter","Loez"});
+        return rows;
     }
 
     @Override
@@ -55,32 +167,23 @@ public class Arcilla extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.arcilla, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.estadisticas) {
             Intent h= new Intent(Arcilla.this,Estadisticas.class);
             startActivity(h);
@@ -112,18 +215,6 @@ public class Arcilla extends AppCompatActivity
             Intent h = new Intent(Arcilla.this, MenuTransportistaDeLadrilloListActivity.class);
             startActivity(h);
         }
-
-        /*else if (id == R.id.view_obreros) {
-            Intent h = new Intent(Arcilla.this,ObrerosActivity.class);
-            startActivity(h);
-        } else if (id == R.id.view_tArcilla) {
-            Intent h = new Intent(Arcilla.this,Transportistas_de_ArcillaActivity.class);
-            startActivity(h);
-        } else if (id == R.id.view_tLadrillo) {
-            Intent h = new Intent(Arcilla.this,Transportistas_de_LadrilloActivity.class);
-            startActivity(h);
-        }*/
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

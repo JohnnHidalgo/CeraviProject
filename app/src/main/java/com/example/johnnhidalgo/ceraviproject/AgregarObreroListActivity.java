@@ -39,8 +39,6 @@ import butterknife.OnClick;
 public class AgregarObreroListActivity extends AppCompatActivity {
 
     private static final String PATH_FOODOb = "Obreros";
-    private static final String PATH_PROFILEOb = "profile";
-    private static final String PATH_CODEOb = "code";
     @BindView(R.id.etNameO)
     EditText etName;
     @BindView(R.id.etTelefonoO)

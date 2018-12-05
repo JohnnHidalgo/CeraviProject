@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DummyContent {
+
     /*********CLIENTE*********/
     public static final List<Cliente> ITEMS = new ArrayList<Cliente>();
     public static final Map<String, Cliente> ITEM_MAP = new HashMap<String, Cliente>();
@@ -122,7 +123,6 @@ public class DummyContent {
         }
 
     }
-
 
 
 
