@@ -22,7 +22,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.johnnhidalgo.ceraviproject.dummy.DummyContent;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -70,38 +69,38 @@ public class AgregarObreroListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMSOb, mTwoPaneOb));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, Obrero.ITEMSOb, mTwoPaneOb));
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(PATH_FOODOb);
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded( DataSnapshot dataSnapshot,  String s) {
-                DummyContent.Obrero obrero =dataSnapshot.getValue(DummyContent.Obrero.class);
+                Obrero obrero =dataSnapshot.getValue(Obrero.class);
                 obrero.setId(dataSnapshot.getKey());
-                if (!DummyContent.ITEMSOb.contains(obrero)) {
-                    DummyContent.addItemOb(obrero);
+                if (!Obrero.ITEMSOb.contains(obrero)) {
+                    Obrero.addItemOb(obrero);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
 
             @Override
             public void onChildChanged( DataSnapshot dataSnapshot,  String s) {
-                DummyContent.Obrero obrero = dataSnapshot.getValue(DummyContent.Obrero.class);
+                Obrero obrero = dataSnapshot.getValue(Obrero.class);
                 obrero.setId(dataSnapshot.getKey());
 
-                if (DummyContent.ITEMSOb.contains(obrero)) {
-                    DummyContent.updateItemOb(obrero);
+                if (Obrero.ITEMSOb.contains(obrero)) {
+                    Obrero.updateItemOb(obrero);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
 
             @Override
             public void onChildRemoved( DataSnapshot dataSnapshot) {
-                DummyContent.Obrero obrero = dataSnapshot.getValue(DummyContent.Obrero.class);
+                Obrero obrero = dataSnapshot.getValue(Obrero.class);
                 obrero.setId(dataSnapshot.getKey());
 
-                if (DummyContent.ITEMSOb.contains(obrero)) {
-                    DummyContent.deleteItemOb(obrero);
+                if (Obrero.ITEMSOb.contains(obrero)) {
+                    Obrero.deleteItemOb(obrero);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
@@ -119,7 +118,7 @@ public class AgregarObreroListActivity extends AppCompatActivity {
     }
     @OnClick(R.id.btnSaveO)
     public void onViewClicked() {
-        DummyContent.Obrero obrero = new DummyContent.Obrero(etName.getText().toString().trim(),
+        Obrero obrero = new Obrero(etName.getText().toString().trim(),
                 etTelefono.getText().toString().trim(),etCiudad.getText().toString().trim());
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(PATH_FOODOb);
@@ -133,12 +132,12 @@ public class AgregarObreroListActivity extends AppCompatActivity {
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final AgregarObreroListActivity mParentActivity;
-        private final List<DummyContent.Obrero> mValues;
+        private final List<Obrero> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DummyContent.Obrero item = (DummyContent.Obrero) view.getTag();
+                Obrero item = (Obrero) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
                     arguments.putString(AgregarObreroDetailFragment.ARG_ITEM_ID, item.getId());
@@ -158,7 +157,7 @@ public class AgregarObreroListActivity extends AppCompatActivity {
         };
 
         SimpleItemRecyclerViewAdapter(AgregarObreroListActivity parent,
-                                      List<DummyContent.Obrero> items,
+                                      List<Obrero> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;

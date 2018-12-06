@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.johnnhidalgo.ceraviproject.dummy.DummyContent;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -63,37 +62,37 @@ public class AgregarClienteListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, mTwoPane));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, Cliente.ITEMS, mTwoPane));
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(PATH_FOOD);
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                DummyContent.Cliente cliente = dataSnapshot.getValue(DummyContent.Cliente.class);
+                Cliente cliente = dataSnapshot.getValue(Cliente.class);
                 cliente.setId(dataSnapshot.getKey());
-                if (!DummyContent.ITEMS.contains(cliente)) {
-                    DummyContent.addItem(cliente);
+                if (!Cliente.ITEMS.contains(cliente)) {
+                    Cliente.addItem(cliente);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
 
             }
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                DummyContent.Cliente cliente = dataSnapshot.getValue(DummyContent.Cliente.class);
+                Cliente cliente = dataSnapshot.getValue(Cliente.class);
                 cliente.setId(dataSnapshot.getKey());
 
-                if (DummyContent.ITEMS.contains(cliente)) {
-                    DummyContent.updateItem(cliente);
+                if (Cliente.ITEMS.contains(cliente)) {
+                    Cliente.updateItem(cliente);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
             @Override
             public void onChildRemoved( DataSnapshot dataSnapshot) {
-                DummyContent.Cliente cliente = dataSnapshot.getValue(DummyContent.Cliente.class);
+                Cliente cliente = dataSnapshot.getValue(Cliente.class);
                 cliente.setId(dataSnapshot.getKey());
 
-                if (DummyContent.ITEMS.contains(cliente)) {
-                    DummyContent.deleteItem(cliente);
+                if (Cliente.ITEMS.contains(cliente)) {
+                    Cliente.deleteItem(cliente);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
@@ -110,7 +109,7 @@ public class AgregarClienteListActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnSave)
     public void onViewClicked() {
-        DummyContent.Cliente cliente = new DummyContent.Cliente(etName.getText().toString().trim(),
+        Cliente cliente = new Cliente(etName.getText().toString().trim(),
                 etTelefono.getText().toString().trim(),etCiudad.getText().toString().trim(),etNit.getText().toString().trim());
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(PATH_FOOD);
@@ -126,12 +125,12 @@ public class AgregarClienteListActivity extends AppCompatActivity {
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final AgregarClienteListActivity mParentActivity;
-        private final List<DummyContent.Cliente> mValues;
+        private final List<Cliente> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DummyContent.Cliente item = (DummyContent.Cliente) view.getTag();
+                Cliente item = (Cliente) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
                     arguments.putString(AgregarClienteDetailFragment.ARG_ITEM_ID, item.getId());
@@ -151,7 +150,7 @@ public class AgregarClienteListActivity extends AppCompatActivity {
         };
 
         SimpleItemRecyclerViewAdapter(AgregarClienteListActivity parent,
-                                      List<DummyContent.Cliente> items,
+                                      List<Cliente> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;

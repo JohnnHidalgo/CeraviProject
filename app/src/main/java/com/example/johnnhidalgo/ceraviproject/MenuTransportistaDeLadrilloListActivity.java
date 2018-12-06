@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.johnnhidalgo.ceraviproject.dummy.DummyContent;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -56,16 +55,16 @@ public class MenuTransportistaDeLadrilloListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMSTRL, mTwoPanetrl));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, TransLadrillo.ITEMSTRL, mTwoPanetrl));
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(PATH_FOODTrl);
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded( DataSnapshot dataSnapshot,  String s) {
-                DummyContent.TransLadrillo transLadrillo = dataSnapshot.getValue(DummyContent.TransLadrillo.class);
+                TransLadrillo transLadrillo = dataSnapshot.getValue(TransLadrillo.class);
                 transLadrillo.setId(dataSnapshot.getKey());
-                if (!DummyContent.ITEMSTRL.contains(transLadrillo)) {
-                    DummyContent.addItemTrl(transLadrillo);
+                if (!TransLadrillo.ITEMSTRL.contains(transLadrillo)) {
+                    TransLadrillo.addItemTrl(transLadrillo);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
@@ -95,12 +94,12 @@ public class MenuTransportistaDeLadrilloListActivity extends AppCompatActivity {
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final MenuTransportistaDeLadrilloListActivity mParentActivity;
-        private final List<DummyContent.TransLadrillo> mValues;
+        private final List<TransLadrillo> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DummyContent.TransLadrillo item = (DummyContent.TransLadrillo) view.getTag();
+                TransLadrillo item = (TransLadrillo) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
                     arguments.putString(MenuTransportistaDeLadrilloDetailFragment.ARG_ITEM_ID, item.getId());
@@ -120,7 +119,7 @@ public class MenuTransportistaDeLadrilloListActivity extends AppCompatActivity {
         };
 
         SimpleItemRecyclerViewAdapter(MenuTransportistaDeLadrilloListActivity parent,
-                                      List<DummyContent.TransLadrillo> items,
+                                      List<TransLadrillo> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;

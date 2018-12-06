@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class T_Arcilla {
     private String id;
@@ -74,7 +73,7 @@ public class T_Arcilla {
     private static final int COUNT = 0;
     static {
         for (int i = 1; i <= COUNT; i++) {
-            addItem(createClienteItem(i));
+            addItem(createT_arcillaItem(i));
         }
     }
     public static void addItem(T_Arcilla item) {
@@ -89,7 +88,7 @@ public class T_Arcilla {
         ITEMS.remove(t_arcilla);
         ITEM_MAP.remove(t_arcilla);
     }
-    private static T_Arcilla createClienteItem(int position) {
+    private static T_Arcilla createT_arcillaItem(int position) {
         return new T_Arcilla(String.valueOf(position), "Item " + position, makeDetails(position), String.valueOf(position));
     }
     private static String makeDetails(int position) {

@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.johnnhidalgo.ceraviproject.dummy.DummyContent;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -56,16 +55,16 @@ public class MenuObreroListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMSOb, mTwoPaneOb));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, Obrero.ITEMSOb, mTwoPaneOb));
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(PATH_FOODob);
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                DummyContent.Obrero obrero = dataSnapshot.getValue(DummyContent.Obrero.class);
+                Obrero obrero = dataSnapshot.getValue(Obrero.class);
                 obrero.setId(dataSnapshot.getKey());
-                if (!DummyContent.ITEMSOb.contains(obrero)) {
-                    DummyContent.addItemOb(obrero);
+                if (!Obrero.ITEMSOb.contains(obrero)) {
+                    Obrero.addItemOb(obrero);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
 
@@ -97,13 +96,13 @@ public class MenuObreroListActivity extends AppCompatActivity {
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final MenuObreroListActivity mParentActivity;
-        private final List<DummyContent.Obrero> mValues;
+        private final List<Obrero> mValues;
         private final boolean mTwoPaneOb;//mTwoPaneOb
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                DummyContent.Obrero item = (DummyContent.Obrero) view.getTag();
+                Obrero item = (Obrero) view.getTag();
                 if (mTwoPaneOb) {
                     Bundle arguments = new Bundle();
                     arguments.putString(MenuObreroDetailFragment.ARG_ITEM_ID, item.getId());
@@ -125,7 +124,7 @@ public class MenuObreroListActivity extends AppCompatActivity {
         };
 
         SimpleItemRecyclerViewAdapter(MenuObreroListActivity parent,
-                                      List<DummyContent.Obrero> items,
+                                      List<Obrero> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;

@@ -9,14 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.johnnhidalgo.ceraviproject.dummy.DummyContent;
-
 
 public class AgregarClienteDetailFragment extends Fragment {
 
     public static final String ARG_ITEM_ID = "item_id";
 
-    private DummyContent.Cliente mItem;
+    private Cliente mItem;
 
     public AgregarClienteDetailFragment() {
     }
@@ -26,7 +24,7 @@ public class AgregarClienteDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-             mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+             mItem = Cliente.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);

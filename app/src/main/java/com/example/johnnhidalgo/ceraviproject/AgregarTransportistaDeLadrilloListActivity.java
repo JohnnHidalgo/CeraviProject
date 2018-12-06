@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.johnnhidalgo.ceraviproject.dummy.DummyContent;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -60,16 +59,16 @@ public class AgregarTransportistaDeLadrilloListActivity extends AppCompatActivit
     }
 
     private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMSTRL, mTwoPane));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, TransLadrillo.ITEMSTRL, mTwoPane));
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(PATH_FOODTL);
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded( DataSnapshot dataSnapshot,  String s) {
-                DummyContent.TransLadrillo transLadrillo = dataSnapshot.getValue(DummyContent.TransLadrillo.class);
+                TransLadrillo transLadrillo = dataSnapshot.getValue(TransLadrillo.class);
                 transLadrillo.setId(dataSnapshot.getKey());
-                if (!DummyContent.ITEMSTRL.contains(transLadrillo)) {
-                    DummyContent.addItemTrl(transLadrillo);
+                if (!TransLadrillo.ITEMSTRL.contains(transLadrillo)) {
+                    TransLadrillo.addItemTrl(transLadrillo);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
 
@@ -77,11 +76,11 @@ public class AgregarTransportistaDeLadrilloListActivity extends AppCompatActivit
 
             @Override
             public void onChildChanged( DataSnapshot dataSnapshot,  String s) {
-                DummyContent.TransLadrillo transLadrillo = dataSnapshot.getValue(DummyContent.TransLadrillo.class);
+                TransLadrillo transLadrillo = dataSnapshot.getValue(TransLadrillo.class);
                 transLadrillo.setId(dataSnapshot.getKey());
 
-                if (DummyContent.ITEMSTRL.contains(transLadrillo)) {
-                    DummyContent.updateItemTrl(transLadrillo);
+                if (TransLadrillo.ITEMSTRL.contains(transLadrillo)) {
+                    TransLadrillo.updateItemTrl(transLadrillo);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
 
@@ -89,11 +88,11 @@ public class AgregarTransportistaDeLadrilloListActivity extends AppCompatActivit
 
             @Override
             public void onChildRemoved( DataSnapshot dataSnapshot) {
-                DummyContent.TransLadrillo transLadrillo = dataSnapshot.getValue(DummyContent.TransLadrillo.class);
+                TransLadrillo transLadrillo = dataSnapshot.getValue(TransLadrillo.class);
                 transLadrillo.setId(dataSnapshot.getKey());
 
-                if (DummyContent.ITEMSTRL.contains(transLadrillo)) {
-                    DummyContent.deleteItemTrl(transLadrillo);
+                if (TransLadrillo.ITEMSTRL.contains(transLadrillo)) {
+                    TransLadrillo.deleteItemTrl(transLadrillo);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
 
@@ -113,7 +112,7 @@ public class AgregarTransportistaDeLadrilloListActivity extends AppCompatActivit
 
     @OnClick(R.id.LbtnASave)
     public void onViewClicked() {
-        DummyContent.TransLadrillo transLadrillo = new DummyContent.TransLadrillo(LName.getText().toString().trim(),
+        TransLadrillo transLadrillo = new TransLadrillo(LName.getText().toString().trim(),
                 LCooperativa.getText().toString().trim(),
                 LTelefono.getText().toString().trim());
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -130,12 +129,12 @@ public class AgregarTransportistaDeLadrilloListActivity extends AppCompatActivit
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final AgregarTransportistaDeLadrilloListActivity mParentActivity;
-        private final List<DummyContent.TransLadrillo> mValues;
+        private final List<TransLadrillo> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DummyContent.TransLadrillo item = (DummyContent.TransLadrillo) view.getTag();
+                TransLadrillo item = (TransLadrillo) view.getTag();
 
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
@@ -156,7 +155,7 @@ public class AgregarTransportistaDeLadrilloListActivity extends AppCompatActivit
         };
 
         SimpleItemRecyclerViewAdapter(AgregarTransportistaDeLadrilloListActivity parent,
-                                      List<DummyContent.TransLadrillo> items,
+                                      List<TransLadrillo> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;

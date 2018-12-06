@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.johnnhidalgo.ceraviproject.dummy.DummyContent;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -56,16 +55,16 @@ public class MenuTransportistaDeArcillaListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMSTRA, mTwoPanetra));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, TransArcilla.ITEMSTRA, mTwoPanetra));
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(PATH_FOODTra);
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded( DataSnapshot dataSnapshot,  String s) {
-                DummyContent.TransArcilla transArcilla = dataSnapshot.getValue(DummyContent.TransArcilla.class);
+                TransArcilla transArcilla = dataSnapshot.getValue(TransArcilla.class);
                 transArcilla.setId(dataSnapshot.getKey());
-                if (!DummyContent.ITEMSTRA.contains(transArcilla)) {
-                    DummyContent.addItemTra(transArcilla);
+                if (!TransArcilla.ITEMSTRA.contains(transArcilla)) {
+                    TransArcilla.addItemTra(transArcilla);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
@@ -97,12 +96,12 @@ public class MenuTransportistaDeArcillaListActivity extends AppCompatActivity {
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final MenuTransportistaDeArcillaListActivity mParentActivity;
-        private final List<DummyContent.TransArcilla> mValues;
+        private final List<TransArcilla> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DummyContent.TransArcilla item = (DummyContent.TransArcilla) view.getTag();
+                TransArcilla item = (TransArcilla) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
                     arguments.putString(MenuTransportistaDeArcillaDetailFragment.ARG_ITEM_ID, item.getId());
@@ -122,7 +121,7 @@ public class MenuTransportistaDeArcillaListActivity extends AppCompatActivity {
         };
 
         SimpleItemRecyclerViewAdapter(MenuTransportistaDeArcillaListActivity parent,
-                                      List<DummyContent.TransArcilla> items,
+                                      List<TransArcilla> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;

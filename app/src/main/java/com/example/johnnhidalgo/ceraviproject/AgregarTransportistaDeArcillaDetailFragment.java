@@ -9,13 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.johnnhidalgo.ceraviproject.dummy.DummyContent;
 
 public class AgregarTransportistaDeArcillaDetailFragment extends Fragment {
 
     public static final String ARG_ITEM_ID = "item_id";
 
-    private DummyContent.TransArcilla mItem;
+    private TransArcilla mItem;
 
     public AgregarTransportistaDeArcillaDetailFragment() {
     }
@@ -25,7 +24,7 @@ public class AgregarTransportistaDeArcillaDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-            mItem = DummyContent.ITEM_MAPTRA.get(getArguments().getString(ARG_ITEM_ID));
+            mItem = TransArcilla.ITEM_MAPTRA.get(getArguments().getString(ARG_ITEM_ID));
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);

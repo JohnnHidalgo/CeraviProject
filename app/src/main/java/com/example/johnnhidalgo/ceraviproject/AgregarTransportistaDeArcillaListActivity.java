@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.johnnhidalgo.ceraviproject.dummy.DummyContent;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -63,38 +62,38 @@ public class AgregarTransportistaDeArcillaListActivity extends AppCompatActivity
     }
 
     private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMSTRA, mTwoPane));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, TransArcilla.ITEMSTRA, mTwoPane));
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(PATH_FOODTR);
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded( DataSnapshot dataSnapshot,  String s) {
-                DummyContent.TransArcilla transArcilla = dataSnapshot.getValue(DummyContent.TransArcilla.class);
+                TransArcilla transArcilla = dataSnapshot.getValue(TransArcilla.class);
                 transArcilla.setId(dataSnapshot.getKey());
-                if (!DummyContent.ITEMSTRA.contains(transArcilla)) {
-                    DummyContent.addItemTra(transArcilla);
+                if (!TransArcilla.ITEMSTRA.contains(transArcilla)) {
+                    TransArcilla.addItemTra(transArcilla);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
 
             @Override
             public void onChildChanged( DataSnapshot dataSnapshot,  String s) {
-                DummyContent.TransArcilla transArcilla = dataSnapshot.getValue(DummyContent.TransArcilla.class);
+                TransArcilla transArcilla = dataSnapshot.getValue(TransArcilla.class);
                 transArcilla.setId(dataSnapshot.getKey());
 
-                if (DummyContent.ITEMSTRA.contains(transArcilla)) {
-                    DummyContent.updateItemTra(transArcilla);
+                if (TransArcilla.ITEMSTRA.contains(transArcilla)) {
+                    TransArcilla.updateItemTra(transArcilla);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
 
             @Override
             public void onChildRemoved( DataSnapshot dataSnapshot) {
-                DummyContent.TransArcilla transArcilla = dataSnapshot.getValue(DummyContent.TransArcilla.class);
+                TransArcilla transArcilla = dataSnapshot.getValue(TransArcilla.class);
                 transArcilla.setId(dataSnapshot.getKey());
 
-                if (DummyContent.ITEMSTRA.contains(transArcilla)) {
-                    DummyContent.deleteItemTra(transArcilla);
+                if (transArcilla.ITEMSTRA.contains(transArcilla)) {
+                    TransArcilla.deleteItemTra(transArcilla);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
@@ -113,7 +112,7 @@ public class AgregarTransportistaDeArcillaListActivity extends AppCompatActivity
 
     @OnClick(R.id.btnASave)
     public void onViewClicked() {
-        DummyContent.TransArcilla transArcilla =  new DummyContent.TransArcilla(AName.getText().toString().trim(),ATelefono.getText().toString().trim(),
+        TransArcilla transArcilla =  new TransArcilla(AName.getText().toString().trim(),ATelefono.getText().toString().trim(),
                                                         ACooperativa.getText().toString().trim(),APlaca.getText().toString().trim());
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(PATH_FOODTR);
@@ -129,12 +128,12 @@ public class AgregarTransportistaDeArcillaListActivity extends AppCompatActivity
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final AgregarTransportistaDeArcillaListActivity mParentActivity;
-        private final List<DummyContent.TransArcilla> mValues;
+        private final List<TransArcilla> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DummyContent.TransArcilla item = (DummyContent.TransArcilla) view.getTag();
+                TransArcilla item = (TransArcilla) view.getTag();
 
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
@@ -155,7 +154,7 @@ public class AgregarTransportistaDeArcillaListActivity extends AppCompatActivity
         };
 
         SimpleItemRecyclerViewAdapter(AgregarTransportistaDeArcillaListActivity parent,
-                                      List<DummyContent.TransArcilla> items,
+                                      List<TransArcilla> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;

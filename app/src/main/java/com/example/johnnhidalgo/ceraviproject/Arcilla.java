@@ -36,22 +36,18 @@ import java.util.Calendar;
 public class Arcilla extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private TableLayout tableLayout;
-    private EditText txtLastName;
+    private EditText txtTransportistaName;
     private String[]header={"FECHA","HORA","TRANSPORTISTA"};
     private ArrayList<String[]>rows= new ArrayList<>();
     private TableDynamic tableDynamic;
     static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
     static SimpleDateFormat simpleHourFormat = new SimpleDateFormat("HH:mm:ss");
-
     private DatabaseReference mDatabase;
-
     private static final String PATH_FOOD = "T_Arcilla";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arcilla);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -67,9 +63,7 @@ public class Arcilla extends AppCompatActivity implements NavigationView.OnNavig
 
                 if (!T_Arcilla.ITEMS.contains(t_arcilla)) {
                     t_arcilla.addItem(t_arcilla);
-
                 }
-
             }
 
             @Override
@@ -103,41 +97,34 @@ public class Arcilla extends AppCompatActivity implements NavigationView.OnNavig
             }
         });
 
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.AgregarT_arcilla);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar calendar = Calendar.getInstance();
-                T_Arcilla t_arcilla= new T_Arcilla(simpleDateFormat.format(calendar.getTime()),simpleHourFormat.format(calendar.getTime()) ,txtLastName.getText().toString());
+                T_Arcilla t_arcilla= new T_Arcilla(simpleDateFormat.format(calendar.getTime()),simpleHourFormat.format(calendar.getTime()) ,txtTransportistaName.getText().toString());
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference reference = database.getReference(PATH_FOOD);
                 reference.push().setValue(t_arcilla);
 
-                String[]item= new String[]{simpleDateFormat.format(calendar.getTime()),simpleHourFormat.format(calendar.getTime()) ,txtLastName.getText().toString()};
+                String[]item= new String[]{simpleDateFormat.format(calendar.getTime()),simpleHourFormat.format(calendar.getTime()) ,txtTransportistaName.getText().toString()};
                 tableDynamic.addItem(item);
-                txtLastName.setText("");
-
-
+                txtTransportistaName.setText("");
             }
         });
 
         tableLayout=(TableLayout)findViewById(R.id.table);
-        txtLastName=(EditText)findViewById(R.id.TransportistaName);
+        txtTransportistaName=(EditText)findViewById(R.id.TransportistaName);
 
         tableDynamic= new TableDynamic(tableLayout,getApplicationContext());
         tableDynamic.addHeader(header);
         tableDynamic.backgroundHeader(Color.rgb(230,74,25));
         tableDynamic.textColorHeader(Color.WHITE);
 
-
         tableDynamic.addData(getClients());
-        tableDynamic.backgroundData(Color.BLUE,Color.GRAY);
-        tableDynamic.lineColor(Color.BLACK);
-        tableDynamic.textColorData(Color.WHITE);
-
-
-
+        tableDynamic.backgroundData(Color.rgb(255,204,188),Color.rgb(255,204,188));
+        tableDynamic.lineColor(Color.WHITE);
+        tableDynamic.textColorData(Color.BLACK);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -149,9 +136,9 @@ public class Arcilla extends AppCompatActivity implements NavigationView.OnNavig
         navigationView.setNavigationItemSelectedListener(this);
     }
     private ArrayList<String[]> getClients(){
-        rows.add(new String[]{"1","Pedro","Lop"});
-        rows.add(new String[]{"2","Pepe","Lopz"});
-        rows.add(new String[]{"3","Peter","Loez"});
+        rows.add(new String[]{"15-02-2017","12:02:17","Roman Maydana"});
+        rows.add(new String[]{"20-12-2017","09:35:19","Alvaro Martinez"});
+        rows.add(new String[]{"06-09-2018","18:46:25","Luis Mantilla"});
         return rows;
     }
 

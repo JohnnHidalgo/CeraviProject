@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.johnnhidalgo.ceraviproject.dummy.DummyContent;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -56,16 +55,16 @@ public class MenuClienteListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, mTwoPane));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, Cliente.ITEMS, mTwoPane));
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(PATH_FOOD);
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded( DataSnapshot dataSnapshot,  String s) {
-                DummyContent.Cliente cliente = dataSnapshot.getValue(DummyContent.Cliente.class);
+                Cliente cliente = dataSnapshot.getValue(Cliente.class);
                 cliente.setId(dataSnapshot.getKey());
-                if(!DummyContent.ITEMS.contains(cliente)){
-                    DummyContent.addItem(cliente);
+                if(!Cliente.ITEMS.contains(cliente)){
+                    Cliente.addItem(cliente);
                 }
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
@@ -97,12 +96,12 @@ public class MenuClienteListActivity extends AppCompatActivity {
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final MenuClienteListActivity mParentActivity;
-        private final List<DummyContent.Cliente> mValues;
+        private final List<Cliente> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DummyContent.Cliente item = (DummyContent.Cliente) view.getTag();
+                Cliente item = (Cliente) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
                     arguments.putString(MenuClienteDetailFragment.ARG_ITEM_ID, item.getId());
@@ -122,7 +121,7 @@ public class MenuClienteListActivity extends AppCompatActivity {
         };
 
         SimpleItemRecyclerViewAdapter(MenuClienteListActivity parent,
-                                      List<DummyContent.Cliente> items,
+                                      List<Cliente> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;
